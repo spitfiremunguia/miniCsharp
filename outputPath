@@ -1,0 +1,12 @@
+C		Line Number: 0	Column Number: 0To: 0	Token Type: IDENTIFIER
+:		Error at line: 0	Description: UNRECOGNIZED CHARACTER
+\		Error at line: 0	Description: UNRECOGNIZED CHARACTER
+Users		Line Number: 0	Column Number: 3To: 7	Token Type: IDENTIFIER
+\		Error at line: 0	Description: UNRECOGNIZED CHARACTER
+david		Line Number: 0	Column Number: 9To: 13	Token Type: IDENTIFIER
+\		Error at line: 0	Description: UNRECOGNIZED CHARACTER
+Desktop		Line Number: 0	Column Number: 15To: 21	Token Type: IDENTIFIER
+\		Error at line: 0	Description: UNRECOGNIZED CHARACTER
+test		Line Number: 0	Column Number: 23To: 26	Token Type: IDENTIFIER
+.		Line Number: 0	Column Number: 27To: 27	Token Type: OPERATOR
+in		Line Number: 0	Column Number: 28To: 29	Token Type: IDENTIFIER
