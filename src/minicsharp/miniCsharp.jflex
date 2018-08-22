@@ -64,7 +64,7 @@ NEWLINE=\n
 
     //RE behaviour code
 
-{MULTILINECOMMENTERROR}<<EOF>> {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));}
+{MULTILINECOMMENTERROR} {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));}
 {RESERVEDWORDS}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"RESERVERD_WORD"));}
 {MULTILINECOMMENT}		{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));}
 {OPERATORS}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"OPERATOR"));}
