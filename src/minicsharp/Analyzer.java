@@ -326,6 +326,7 @@ public class Analyzer {
 
   /* user code: */
 //Developer´s extra code declaration
+private static int errorCounter=0;
 class Yytoken{
 		public Yytoken(){
 
@@ -362,6 +363,12 @@ for(String str: TokenList) {
 }
 writer.close();
 System.out.println("Done!");
+if(errorCounter==0){
+	System.out.println("The file contains no errors, This file is a cs file");
+}
+else{
+	System.out.println("The file contains "+errorCounter+" errors, This is not a cs file");
+}
 }
 
 
@@ -740,13 +747,13 @@ System.out.println("Done!");
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"UNRECOGNIZED CHARACTER"));
+            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"UNRECOGNIZED CHARACTER")); errorCounter+=1;
             }
           case 14: break;
           case 2: 
             { if(yytext().length()>31){
 			TokenList.add(CreateTokenLog(true,yytext().substring(0,30),yyline,yycolumn,"IDENTIFIER_TO_LONG,_MAX_SIZE_31_CHARACTERS"));
-
+			errorCounter+=1;
 			}
 			else{
 				TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"IDENTIFIER"));
@@ -774,7 +781,7 @@ System.out.println("Done!");
             }
           case 20: break;
           case 8: 
-            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));
+            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;
             }
           case 21: break;
           case 9: 
