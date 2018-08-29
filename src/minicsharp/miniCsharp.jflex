@@ -75,7 +75,7 @@ NEWLINE=\n
 
 
 {RESERVEDWORDS}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"RESERVERD_WORD"));}
-{MULTILINECOMMENT}		{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));}
+{MULTILINECOMMENT}		{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));*/}
 {OPERATORS}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"OPERATOR"));}
 {BOOLEAN}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"BOOLEAN"));}
 {ID}        {if(yytext().length()>31){
@@ -93,7 +93,7 @@ NEWLINE=\n
 {NORMALCOMMENT}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));}
 {NEWLINE}				{/*Do nothing...*/}
 {WHITESPACES}			{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/}
-{MULTILINECOMMENTERROR} {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));}
+{MULTILINECOMMENTERROR} {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));}
 
 
     //Error code management

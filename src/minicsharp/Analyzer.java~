@@ -774,7 +774,7 @@ System.out.println("Done!");
             }
           case 20: break;
           case 8: 
-            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));
+            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \*\\"));
             }
           case 21: break;
           case 9: 
@@ -790,7 +790,7 @@ System.out.println("Done!");
             }
           case 24: break;
           case 12: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));
+            { /*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));*/
             }
           case 25: break;
           case 13: 
