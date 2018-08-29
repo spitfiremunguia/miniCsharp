@@ -60,12 +60,12 @@ public class Analyzer {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\3\15\2\6\4\1\1\1\5"+
     "\1\4\1\3\1\1\1\6\1\5\2\0\2\2\1\7"+
-    "\20\2\5\0\1\3\1\0\1\10\1\0\1\11\1\0"+
-    "\1\2\1\7\15\2\1\7\2\0\1\3\1\10\2\2"+
-    "\1\12\5\2\1\13\1\14\15\2";
+    "\20\2\1\10\4\0\1\3\1\0\1\11\1\0\1\12"+
+    "\1\0\1\2\1\7\15\2\1\7\3\0\1\3\1\11"+
+    "\2\2\1\13\5\2\1\14\1\15\15\2";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[105];
+    int [] result = new int[106];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -99,14 +99,14 @@ public class Analyzer {
     "\0\u08e7\0\u091c\0\u0951\0\u0986\0\u09bb\0\u09f0\0\u0a25\0\u0a5a"+
     "\0\u0a8f\0\u0562\0\65\0\u0ac4\0\u0af9\0\u0af9\0\u0b2e\0\u0b63"+
     "\0\u0b98\0\u0bcd\0\u0c02\0\u0c37\0\u0c6c\0\u0ca1\0\u0cd6\0\u0d0b"+
-    "\0\u0d40\0\u0d75\0\u0daa\0\u0ddf\0\u0e14\0\u0e49\0\u0e7e\0\u0eb3"+
-    "\0\u0a5a\0\u0562\0\u0ee8\0\u0f1d\0\152\0\u0f52\0\u0f87\0\u0fbc"+
-    "\0\u0ff1\0\u1026\0\65\0\65\0\u105b\0\u1090\0\u10c5\0\u10fa"+
-    "\0\u112f\0\u1164\0\u1199\0\u11ce\0\u1203\0\u1238\0\u126d\0\u12a2"+
-    "\0\u12d7";
+    "\0\u0d40\0\u0d75\0\u0daa\0\u0ddf\0\u0e14\0\u0e49\0\u0986\0\u0e7e"+
+    "\0\u0eb3\0\u0a5a\0\u0562\0\u0ee8\0\u0f1d\0\152\0\u0f52\0\u0f87"+
+    "\0\u0fbc\0\u0ff1\0\u1026\0\65\0\65\0\u105b\0\u1090\0\u10c5"+
+    "\0\u10fa\0\u112f\0\u1164\0\u1199\0\u11ce\0\u1203\0\u1238\0\u126d"+
+    "\0\u12a2\0\u12d7";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[105];
+    int [] result = new int[106];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -167,41 +167,41 @@ public class Analyzer {
     "\12\3\17\0\5\3\6\0\15\3\1\43\15\3\17\0"+
     "\5\3\6\0\12\3\1\114\20\3\17\0\5\3\6\0"+
     "\4\3\1\115\26\3\17\0\5\3\6\0\26\3\1\116"+
-    "\4\3\17\0\5\3\5\0\44\64\1\117\20\64\64\0"+
-    "\1\120\2\0\1\66\11\0\1\37\36\0\1\66\2\0"+
+    "\4\3\17\0\5\3\5\0\44\117\1\120\20\117\64\0"+
+    "\1\121\2\0\1\66\11\0\1\37\36\0\1\66\2\0"+
     "\1\66\1\37\7\0\1\67\11\0\1\37\35\0\1\40"+
-    "\1\67\2\0\1\67\1\37\7\0\1\121\3\0\1\121"+
-    "\3\0\1\121\1\0\1\121\3\0\3\121\7\0\1\121"+
-    "\20\0\1\121\1\0\3\121\7\0\1\67\11\0\1\37"+
+    "\1\67\2\0\1\67\1\37\7\0\1\122\3\0\1\122"+
+    "\3\0\1\122\1\0\1\122\3\0\3\122\7\0\1\122"+
+    "\20\0\1\122\1\0\3\122\7\0\1\67\11\0\1\37"+
     "\35\0\1\40\1\71\2\0\1\71\1\37\5\0\60\72"+
-    "\1\122\1\0\1\74\2\72\2\0\1\75\50\0\1\75"+
+    "\1\123\1\0\1\74\2\72\2\0\1\75\50\0\1\75"+
     "\2\0\1\75\7\0\5\3\1\43\25\3\17\0\5\3"+
-    "\6\0\13\3\1\123\17\3\17\0\5\3\6\0\12\3"+
-    "\1\124\20\3\17\0\5\3\6\0\11\3\1\115\21\3"+
+    "\6\0\13\3\1\124\17\3\17\0\5\3\6\0\12\3"+
+    "\1\125\20\3\17\0\5\3\6\0\11\3\1\115\21\3"+
     "\17\0\5\3\6\0\12\3\1\43\20\3\17\0\5\3"+
-    "\6\0\13\3\1\125\17\3\17\0\5\3\6\0\14\3"+
-    "\1\43\16\3\17\0\5\3\6\0\20\3\1\126\12\3"+
+    "\6\0\13\3\1\126\17\3\17\0\5\3\6\0\14\3"+
+    "\1\43\16\3\17\0\5\3\6\0\20\3\1\127\12\3"+
     "\17\0\5\3\6\0\13\3\1\43\17\3\17\0\5\3"+
-    "\6\0\13\3\1\127\17\3\17\0\5\3\6\0\4\3"+
-    "\1\130\26\3\17\0\5\3\6\0\10\3\1\131\22\3"+
+    "\6\0\13\3\1\130\17\3\17\0\5\3\6\0\4\3"+
+    "\1\131\26\3\17\0\5\3\6\0\10\3\1\132\22\3"+
     "\17\0\5\3\6\0\14\3\1\105\16\3\17\0\5\3"+
     "\6\0\14\3\1\104\16\3\17\0\5\3\6\0\12\3"+
-    "\1\107\20\3\17\0\5\3\6\0\31\3\1\132\1\3"+
-    "\17\0\5\3\5\0\44\64\1\117\1\133\17\64\61\0"+
-    "\1\134\4\0\15\3\1\135\15\3\17\0\5\3\6\0"+
-    "\13\3\1\136\17\3\17\0\5\3\6\0\27\3\1\43"+
-    "\3\3\17\0\5\3\6\0\6\3\1\137\24\3\17\0"+
-    "\5\3\6\0\6\3\1\140\24\3\17\0\5\3\6\0"+
-    "\15\3\1\141\15\3\17\0\5\3\6\0\15\3\1\142"+
-    "\15\3\17\0\5\3\6\0\21\3\1\143\11\3\17\0"+
-    "\5\3\6\0\24\3\1\144\6\3\17\0\5\3\6\0"+
+    "\1\107\20\3\17\0\5\3\6\0\31\3\1\133\1\3"+
+    "\17\0\5\3\5\0\44\117\1\120\1\134\17\117\61\0"+
+    "\1\135\4\0\15\3\1\136\15\3\17\0\5\3\6\0"+
+    "\13\3\1\137\17\3\17\0\5\3\6\0\27\3\1\43"+
+    "\3\3\17\0\5\3\6\0\6\3\1\140\24\3\17\0"+
+    "\5\3\6\0\6\3\1\141\24\3\17\0\5\3\6\0"+
+    "\15\3\1\142\15\3\17\0\5\3\6\0\15\3\1\143"+
+    "\15\3\17\0\5\3\6\0\21\3\1\144\11\3\17\0"+
+    "\5\3\6\0\24\3\1\145\6\3\17\0\5\3\6\0"+
     "\5\3\1\105\25\3\17\0\5\3\6\0\16\3\1\43"+
     "\14\3\17\0\5\3\6\0\6\3\1\43\24\3\17\0"+
-    "\5\3\6\0\15\3\1\145\15\3\17\0\5\3\6\0"+
-    "\20\3\1\146\12\3\17\0\5\3\6\0\13\3\1\147"+
-    "\17\3\17\0\5\3\6\0\20\3\1\150\12\3\17\0"+
+    "\5\3\6\0\15\3\1\146\15\3\17\0\5\3\6\0"+
+    "\20\3\1\147\12\3\17\0\5\3\6\0\13\3\1\150"+
+    "\17\3\17\0\5\3\6\0\20\3\1\151\12\3\17\0"+
     "\5\3\6\0\17\3\1\107\13\3\17\0\5\3\6\0"+
-    "\6\3\1\151\24\3\17\0\5\3\6\0\32\3\1\43"+
+    "\6\3\1\152\24\3\17\0\5\3\6\0\32\3\1\43"+
     "\17\0\5\3\6\0\7\3\1\105\23\3\17\0\5\3"+
     "\5\0";
 
@@ -244,12 +244,12 @@ public class Analyzer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\20\1\1\11\11\1\2\11\2\0\23\1"+
-    "\5\0\1\1\1\0\1\11\1\0\1\1\1\0\20\1"+
-    "\2\0\12\1\2\11\15\1";
+    "\1\0\1\11\20\1\1\11\11\1\2\11\2\0\24\1"+
+    "\4\0\1\1\1\0\1\11\1\0\1\1\1\0\20\1"+
+    "\3\0\12\1\2\11\15\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[105];
+    int [] result = new int[106];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -332,10 +332,18 @@ class Yytoken{
 		}
 	}
 public static ArrayList<String>TokenList=new ArrayList<String>();
-public static String CreateTokenLog(Boolean isError,String token, int lineNumber,int columnNumber,String description){
-	String newToken=token+"\t\tLine Number: "+(lineNumber+1)+"\t"+"Column Number: "+(columnNumber+1)+" To: "+getLastColumn(columnNumber+1,token.length())+"\tToken Type: "+description+"\n";
+private static String  addsTabs(int tokenLength){
+	String tabs="";
+	for(int i=32-tokenLength;i>0;i--){
+		tabs+=" ";
+	}
+	return tabs;
 
-	String ErrorToken=token+"\t\tError at line: "+(lineNumber+1)+"\tDescription: "+description+"\n";
+}
+public static String CreateTokenLog(Boolean isError,String token, int lineNumber,int columnNumber,String description){
+	String newToken=token+addsTabs(token.length())+"\t\tLine Number: "+(lineNumber+1)+"\t"+"Column Number: "+(columnNumber+1)+" To: "+getLastColumn(columnNumber+1,token.length())+"\tToken Type: "+description+"\n";
+
+	String ErrorToken=token+addsTabs(token.length())+"\t\tError at line: "+(lineNumber+1)+"\tDescription: "+description+"\n";
 
 	return isError?ErrorToken:newToken;
 }
@@ -347,12 +355,13 @@ public static void CreateOutputFile(String outputPath) throws IOException{
       try {
           writer = new FileWriter(outputPath);
       } catch (IOException ex) {
-          
+          System.out.println("Something wrong happened with the output file...");
       }
 for(String str: TokenList) {
   writer.write(str);
 }
 writer.close();
+System.out.println("Done!");
 }
 
 
@@ -733,7 +742,7 @@ writer.close();
           case 1: 
             { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"UNRECOGNIZED CHARACTER"));
             }
-          case 13: break;
+          case 14: break;
           case 2: 
             { if(yytext().length()>31){
 			TokenList.add(CreateTokenLog(true,yytext().substring(0,30),yyline,yycolumn,"IDENTIFIER_TO_LONG,_MAX_SIZE_31_CHARACTERS"));
@@ -743,47 +752,51 @@ writer.close();
 				TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"IDENTIFIER"));
 			}
             }
-          case 14: break;
+          case 15: break;
           case 3: 
             { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"INTEGER"));
             }
-          case 15: break;
+          case 16: break;
           case 4: 
             { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"OPERATOR"));
             }
-          case 16: break;
-          case 5: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));
-            }
           case 17: break;
+          case 5: 
+            { /*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/
+            }
+          case 18: break;
           case 6: 
             { /*Do nothing...*/
             }
-          case 18: break;
+          case 19: break;
           case 7: 
             { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"RESERVERD_WORD"));
             }
-          case 19: break;
-          case 8: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"STRING"));
-            }
           case 20: break;
-          case 9: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"DOUBLE"));
+          case 8: 
+            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));
             }
           case 21: break;
-          case 10: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"BOOLEAN"));
+          case 9: 
+            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"STRING"));
             }
           case 22: break;
-          case 11: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));
+          case 10: 
+            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"DOUBLE"));
             }
           case 23: break;
-          case 12: 
-            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));
+          case 11: 
+            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"BOOLEAN"));
             }
           case 24: break;
+          case 12: 
+            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));
+            }
+          case 25: break;
+          case 13: 
+            { TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));
+            }
+          case 26: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

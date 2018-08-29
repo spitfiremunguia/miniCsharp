@@ -13,10 +13,18 @@ class Yytoken{
 		}
 	}
 public static ArrayList<String>TokenList=new ArrayList<String>();
-public static String CreateTokenLog(Boolean isError,String token, int lineNumber,int columnNumber,String description){
-	String newToken=token+"\t\tLine Number: "+(lineNumber+1)+"\t"+"Column Number: "+(columnNumber+1)+" To: "+getLastColumn(columnNumber+1,token.length())+"\tToken Type: "+description+"\n";
+private static String  addsTabs(int tokenLength){
+	String tabs="";
+	for(int i=32-tokenLength;i>0;i--){
+		tabs+=" ";
+	}
+	return tabs;
 
-	String ErrorToken=token+"\t\tError at line: "+(lineNumber+1)+"\tDescription: "+description+"\n";
+}
+public static String CreateTokenLog(Boolean isError,String token, int lineNumber,int columnNumber,String description){
+	String newToken=token+addsTabs(token.length())+"\t\tLine Number: "+(lineNumber+1)+"\t"+"Column Number: "+(columnNumber+1)+" To: "+getLastColumn(columnNumber+1,token.length())+"\tToken Type: "+description+"\n";
+
+	String ErrorToken=token+addsTabs(token.length())+"\t\tError at line: "+(lineNumber+1)+"\tDescription: "+description+"\n";
 
 	return isError?ErrorToken:newToken;
 }
@@ -28,12 +36,13 @@ public static void CreateOutputFile(String outputPath) throws IOException{
       try {
           writer = new FileWriter(outputPath);
       } catch (IOException ex) {
-          
+          System.out.println("Something wrong happened with the output file...");
       }
 for(String str: TokenList) {
   writer.write(str);
 }
 writer.close();
+System.out.println("Done!");
 }
 
 
@@ -53,7 +62,7 @@ BOOLEAN=true|false
 INTEGER=(0|[1-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]+|(b|B)(0|1)+)
 DOUBLE=(([0-9]+|([0-9]*(\.)[0-9]+)|([0-9]+(\.)[0-9]))(e|E)(\+|-)?[0-9]+)
 STRING=(\"([^\"\n]|\\.)*\")
-MULTILINECOMMENTERROR="\/\*"~""
+MULTILINECOMMENTERROR="/*"
 MULTILINECOMMENT="\/\*"~"\*\/"
 NORMALCOMMENT=\/\/"~"\n
 WHITESPACES=[\r|\t|\f|\s|\g]
@@ -64,7 +73,7 @@ NEWLINE=\n
 
     //RE behaviour code
 
-{MULTILINECOMMENTERROR} {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));}
+
 {RESERVEDWORDS}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"RESERVERD_WORD"));}
 {MULTILINECOMMENT}		{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));}
 {OPERATORS}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"OPERATOR"));}
@@ -83,8 +92,8 @@ NEWLINE=\n
 {STRING}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"STRING"));}
 {NORMALCOMMENT}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));}
 {NEWLINE}				{/*Do nothing...*/}
-{WHITESPACES}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));}
-
+{WHITESPACES}			{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/}
+{MULTILINECOMMENTERROR} {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING \\*"));}
 
 
     //Error code management
