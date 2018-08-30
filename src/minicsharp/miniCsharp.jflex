@@ -68,7 +68,7 @@ RESERVEDWORDS=void|int|double|bool|string|class|interface|null|this|extends|impl
 OPERATORS=\[\]|\[|\]|\{\}|\{|\}|\(\)|\(|\)|<|>|\+|-|\*|\/|\%|=|==|\!=|>=|<=|\!|\&\&|\|\||\;|\,|\.
 BOOLEAN=true|false
 INTEGER=(0|[1-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]+|(b|B)(0|1)+)
-DOUBLE=(([0-9]+|([0-9]*(\.)[0-9]+)|([0-9]+(\.)[0-9]))(e|E)(\+|-)?[0-9]+)
+DOUBLE=[-+]?[0-9]+\.?[0-9]+([eE]{INTEGER}.?[0-9]*)?/*(([0-9]+|([0-9]*(\.)[0-9]+)|([0-9]+(\.)[0-9]))(e|E)(\+|-)?[0-9]+)*/
 STRING=(\"([^\"\n]|\\.)*\")
 MULTILINECOMMENTERROR="/*"("*"[^/]|[^*/]|[^*]"/")*
 MULTILINECOMMENT="\/\*"~"\*\/"
@@ -95,9 +95,10 @@ NEWLINE=\n
 				TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
 			}
 		}
-
 {INTEGER}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));}
 {DOUBLE}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));}
+
+
 {STRING}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"STRING"));}
 							
 							
