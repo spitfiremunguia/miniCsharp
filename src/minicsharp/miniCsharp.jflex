@@ -8,6 +8,7 @@ import java.io.IOException;
 %{
 //Developer´s extra code declaration
 private static int errorCounter=0;
+public   boolean commentError=false;
 class Yytoken{
 		public Yytoken(){
 
@@ -23,7 +24,7 @@ private static String  addsTabs(int tokenLength){
 
 }
 public static String CreateTokenLog(Boolean isError,String token, int lineNumber,int columnNumber,String description){
-	String newToken=token+addsTabs(token.length())+"\t\tLine Number: "+(lineNumber+1)+"\t"+"Column Number: "+(columnNumber+1)+" To: "+getLastColumn(columnNumber+1,token.length())+"\tToken Type: "+description+"\n";
+	String newToken=token+addsTabs(token.length())+"\t\tLine Number: "+(lineNumber+1)+"\t"+"Column Number: "+(columnNumber)+" To: "+getLastColumn(columnNumber,token.length())+"\tToken Type: "+description+" Token: "+token+"\n";
 
 	String ErrorToken=token+addsTabs(token.length())+"\t\tError at line: "+(lineNumber+1)+"\tDescription: "+description+"\n";
 
@@ -69,9 +70,9 @@ BOOLEAN=true|false
 INTEGER=(0|[1-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]+|(b|B)(0|1)+)
 DOUBLE=(([0-9]+|([0-9]*(\.)[0-9]+)|([0-9]+(\.)[0-9]))(e|E)(\+|-)?[0-9]+)
 STRING=(\"([^\"\n]|\\.)*\")
-MULTILINECOMMENTERROR="/*"
+MULTILINECOMMENTERROR="/*"("*"[^/]|[^*/]|[^*]"/")*
 MULTILINECOMMENT="\/\*"~"\*\/"
-NORMALCOMMENT=\/\/"~"\n
+NORMALCOMMENT="\/\/"~"\n"
 WHITESPACES=[\r|\t|\f|\s|\g]
 NEWLINE=\n
 
@@ -81,26 +82,32 @@ NEWLINE=\n
     //RE behaviour code
 
 
-{RESERVEDWORDS}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"RESERVERD_WORD"));}
-{MULTILINECOMMENT}		{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));*/}
-{OPERATORS}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"OPERATOR"));}
-{BOOLEAN}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"BOOLEAN"));}
-{ID}        {if(yytext().length()>31){
+{RESERVEDWORDS}			{
+							TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"RESERVERD_WORD"));}
+{OPERATORS}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"OPERATOR"));}
+{BOOLEAN}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"BOOLEAN"));}
+{ID}       				 {if(yytext().length()>31){
+			
 			TokenList.add(CreateTokenLog(true,yytext().substring(0,30),yyline,yycolumn,"IDENTIFIER_TO_LONG,_MAX_SIZE_31_CHARACTERS"));
 			errorCounter+=1;
 			}
 			else{
-				TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"IDENTIFIER"));
+				TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
 			}
 		}
 
-{INTEGER}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"INTEGER"));}
-{DOUBLE}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"DOUBLE"));}
-{STRING}				{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"STRING"));}
-{NORMALCOMMENT}			{TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));}
+{INTEGER}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));}
+{DOUBLE}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));}
+{STRING}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"STRING"));}
+							
+							
+{MULTILINECOMMENT}		{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));*/}
+{MULTILINECOMMENTERROR} {   TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;}
+{NORMALCOMMENT}			{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));*/}
+
 {NEWLINE}				{/*Do nothing...*/}
 {WHITESPACES}			{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/}
-{MULTILINECOMMENTERROR} {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;}
+
 
 
     //Error code management

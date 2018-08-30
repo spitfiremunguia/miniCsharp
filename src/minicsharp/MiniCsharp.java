@@ -5,6 +5,7 @@
  */
 package minicsharp;
 
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,6 +14,8 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
 
 /**
  *
@@ -37,13 +40,25 @@ public class MiniCsharp {
         
         
     }
+    
     private static void AnalizerInit(String csharpCodePath) throws IOException{
         try{
-            Analyzer chsarpAnalizer=new Analyzer(new BufferedReader(new FileReader(csharpCodePath))); 
-        while (chsarpAnalizer.yylex()!=null){
-            //this here do stuff
+            Analyzer csharpAnalyzer=new Analyzer(new BufferedReader(new FileReader(csharpCodePath)));
+            Analyzer.Yytoken token=csharpAnalyzer.yylex();
             
-        }
+            while(true){
+                if(token==null){
+                    System.out.println("EOF");
+                    break;
+                }
+                /*if(csharpAnalyzer.SPECIALTOKEN=="MULTERROR"){
+                    System.out.println("Multiine error");
+                    break;
+                }*/
+                
+            }
+            
+    
         File f=new File(csharpCodePath);
         Analyzer.CreateOutputFile(f.getParent()+"\\"+f.getName().substring(0,f.getName().indexOf("."))+".out");
         }
