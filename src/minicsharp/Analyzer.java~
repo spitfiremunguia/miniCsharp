@@ -788,7 +788,7 @@ else{
             }
           case 20: break;
           case 8: 
-            { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;
+            { TokenList.add(CreateTokenLog(true,"",yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;
             }
           case 21: break;
           case 9: 

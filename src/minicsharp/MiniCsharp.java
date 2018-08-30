@@ -28,8 +28,11 @@ public class MiniCsharp {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        System.out.println("Set the path for the C# code text file");
         Scanner scanner=new Scanner(System.in);
+        
+        /*int flag=scanner.nextInt();*/
+        /*scanner=new Scanner(System.in);*/
+        System.out.println("Set the path for the C# code text file");
         String input=scanner.nextLine();
         if(input.contains(".frag")){
             AnalizerInit(input);
@@ -37,7 +40,7 @@ public class MiniCsharp {
         else{
             System.out.println("Unexpected file extension. The extension should be .frag");
         }
-        
+          
         
     }
     
