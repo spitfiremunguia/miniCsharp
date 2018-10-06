@@ -67,8 +67,8 @@ ID =  [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
 RESERVEDWORDS=void|int|double|bool|string|class|interface|null|this|extends|implements|for|while|if|else|return|break|New|NewArray
 OPERATORS=\[\]|\[|\]|\{\}|\{|\}|\(\)|\(|\)|<|>|\+|-|\*|\/|\%|=|==|\!=|>=|<=|\!|\&\&|\|\||\;|\,|\.
 BOOLEAN=true|false
-INTEGER=(0|[1-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]+|(b|B)(0|1)+)
-DOUBLE=[-+]?[0-9]+\.?[0-9]+([eE]{INTEGER}.?[0-9]*)?/*(([0-9]+|([0-9]*(\.)[0-9]+)|([0-9]+(\.)[0-9]))(e|E)(\+|-)?[0-9]+)*/
+INTEGER=((0|[0-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]))
+DOUBLE=([0-9]+\.[0-9]*({INTEGER}*[eE]?[-+]?{INTEGER}*[\.]?[0-9]*)?)
 STRING=(\"([^\"\n]|\\.)*\")
 MULTILINECOMMENTERROR="/*"("*"[^/]|[^*/]|[^*]"/")*
 MULTILINECOMMENT="\/\*"~"\*\/"
@@ -85,6 +85,11 @@ NEWLINE=\n
 {RESERVEDWORDS}			{
 							TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"RESERVERD_WORD"));}
 {OPERATORS}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"OPERATOR"));}
+{INTEGER}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));}
+{DOUBLE}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));}
+
+
+
 {BOOLEAN}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"BOOLEAN"));}
 {ID}       				 {if(yytext().length()>31){
 			
@@ -95,8 +100,7 @@ NEWLINE=\n
 				TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
 			}
 		}
-{INTEGER}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));}
-{DOUBLE}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));}
+
 
 
 {STRING}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"STRING"));}
