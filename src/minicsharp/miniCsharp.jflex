@@ -8,7 +8,13 @@ import java_cup.runtime.Symbol;
 
 %{
 //Developer´s extra code declaration
-public static sym asym=new sym();
+private Symbol symbol(int type){
+	return new Symbol(type,yyline,yycolumn,yytext());
+}
+
+private Symbol symbol(int type,Object value){
+	return new Symbol(type,yyline,yycolumn,value	);
+}
 private static int errorCounter=0;
 public   boolean commentError=false;
 class token{
@@ -70,19 +76,14 @@ else{
 //Setting the .jflex file
 %public
 %class Analyzer
-%type Token
-%char
 %column
-%full
-%type java_cup.runtime.Symbol
-%function next_token
-%implements java_cup.runtime.Scanner
 %line
-%cup
 %unicode
+%cup
 //RE declaration area
-ARITMETIC=[\+|-|\*|\/|%]
-LOGIC=[==|<|>|>=|<=|&&|\|\||(!=)]
+ARITMETIC="+"|"-"|"*"|"/"|"%"
+LOGIC="=="|"<"|">"|">="|"<="|"&&"|"||"|"!="
+EQUAL="="|"+="|"-="|"*="|"/="
 ID =  [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
 BOOLEAN=true|false
 INTEGER=((0|[0-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]))
@@ -98,129 +99,136 @@ NEWLINE=\n
 <YYINITIAL> {
 
     //RE behaviour code
-"!"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"!"));
-						return new Symbol(sym.exclamation,new token(yytext(),yyline+1,yycolumn+1));
-					}
-"="					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"="));
-						return new Symbol(sym.equal,new token(yytext(),yyline+1,yycolumn+1));
-					}
+
+{EQUAL}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"="));
+							return new Symbol(sym.equal,yycolumn,yyline,yytext());
+						}
+
+{ARITMETIC}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.arit,yycolumn,yyline,yytext());
+					    }
+				
 {LOGIC}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
-						return new Symbol(sym.logic,new token(yytext(),yyline+1,yycolumn+1));
-					   }
+							return new Symbol(sym.logic,yycolumn,yyline,yytext());
+					    }
+"!"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"!"));
+							return new Symbol(sym.exclamation,yycolumn,yyline,yytext());
+						}				
 
 "implements"		{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"implements"));
-						return new Symbol(sym.implements_t,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.implements_t,yycolumn,yyline,yytext());
 					}
+
 "extends"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"extends"));
-						return new Symbol(sym.extends_t,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.extends_t,yycolumn,yyline,yytext());
 					}
+
 "void"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"void"));
-						return new Symbol(sym.VOID,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.VOID,yycolumn,yyline,yytext());
 					}
+
 "int"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"int"));
-						return new Symbol(sym.INT,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.INT,yycolumn,yyline,yytext());
 					}
 "double"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"double"));
-						return new Symbol(sym.DOUBLE,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.DOUBLE,yycolumn,yyline,yytext());
 					}
 "bool"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"bool"));
-						return new Symbol(sym.BOOL,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.BOOL,yycolumn,yyline,yytext());
 					}
 "string"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"string"));
-						return new Symbol(sym.STRING,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.STRING,yycolumn,yyline,yytext());
 					}
 "class"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"class"));
-						return new Symbol(sym.CLASS,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.CLASS,yycolumn,yyline,yytext());
 					}
 "interface"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"interface"));
-						return new Symbol(sym.interface_t,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.interface_t,yycolumn,yyline,yytext());
 					}
 "null"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"null"));
-						return new Symbol(sym.NULL,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.NULL,yycolumn,yyline,yytext());
 					}
 "this"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"this"));
-						return new Symbol(sym.THIS,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.THIS,yycolumn,yyline,yytext());
 					}
 "while"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"while"));
-						return new Symbol(sym.WHILE,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.WHILE,yycolumn,yyline,yytext());
 					}
 "if"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"if"));
-						return new Symbol(sym.IF,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.IF,yycolumn,yyline,yytext());
 					}
 "else"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"else"));
-						return new Symbol(sym.else_t,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.else_t,yycolumn,yyline,yytext());
 					}
 "return"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"return"));
-						return new Symbol(sym.RETURN,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.RETURN,yycolumn,yyline,yytext());
 					}
 "break"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"break"));
-						return new Symbol(sym.BREAK,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.BREAK,yycolumn,yyline,yytext());
 					}
 "New"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"New"));
-						return new Symbol(sym.New,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.New,yycolumn,yyline,yytext());
 					}
 "NewArray"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"NewArray"));
-						return new Symbol(sym.NewArray,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.NewArray,yycolumn,yyline,yytext());
 					}
 "Print"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"Print"));
-						return new Symbol(sym.Print,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.Print,yycolumn,yyline,yytext());
 					}
 "ReadInteger"		{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"ReadInteger"));
-						return new Symbol(sym.ReadInteger,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.ReadInteger,yycolumn,yyline,yytext());
 					}
 "ReadLine"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"ReadLine"));
-						return new Symbol(sym.ReadLine,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.ReadLine,yycolumn,yyline,yytext());
 					}
 "Malloc"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"Malloc"));
-						return new Symbol(sym.Malloc,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.Malloc,yycolumn,yyline,yytext());
 					}
 
 
 
 
 ";"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,";"));
-						return new Symbol(sym.semicolon,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.semicolon,yycolumn,yyline,yytext());
 					}
 "."					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"."));
-						return new Symbol(sym.dot,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.dot,yycolumn,yyline,yytext());
 					}
 "("					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"("));
-						return new Symbol(sym.leftparen,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.leftparen,yycolumn,yyline,yytext());
 					}
 ")"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,")"));
-						return new Symbol(sym.rightparen,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.rightparen,yycolumn,yyline,yytext());
 					}
 "["					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"["));
-						return new Symbol(sym.leftsquarebrace,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.leftsquarebrace,yycolumn,yyline,yytext());
 					}
 "]"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"]"));
-						return new Symbol(sym.rightsquarebrace,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.rightsquarebrace,yycolumn,yyline,yytext());
 					}
 "{"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"{"));
-						return new Symbol(sym.leftbrace,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.leftbrace,yycolumn,yyline,yytext());
 					}
 "}"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"}"));
-						return new Symbol(sym.rightbrace,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.rightbrace,yycolumn,yyline,yytext());
 					}
 ","					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,","));
-						return new Symbol(sym.comma,new token(yytext(),yyline+1,yycolumn+1));
+						return new Symbol(sym.comma,yycolumn,yyline,yytext());
 					}
 
-{ARITMETIC}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
-						return new Symbol(sym.arit,new token(yytext(),yyline+1,yycolumn+1));
-					   }
+
 
 {INTEGER}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));
-							return new Symbol(sym.INTCONSTANT,new token(yytext(),yyline+1,yycolumn+1));
+							return new Symbol(sym.INTCONSTANT,yycolumn,yyline,yytext());
 						}
 {DOUBLE}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));
-							return new Symbol(sym.DOUBLECONSTANT,new token(yytext(),yyline+1,yycolumn+1));
+							return new Symbol(sym.DOUBLECONSTANT,yycolumn,yyline,yytext());
 						}
 
 
 
 {BOOLEAN}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"BOOLEAN"));
-							return new Symbol(sym.BOOLEANCONSTANT,new token(yytext(),yyline+1,yycolumn+1));
+							return new Symbol(sym.BOOLEANCONSTANT,yycolumn,yyline,yytext());
 						}
 {ID}       				 {if(yytext().length()>31){
 			
@@ -229,14 +237,14 @@ NEWLINE=\n
 						}
 						else{
 							TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
-							return new Symbol(sym.IDENT,new token(yytext(),yyline+1,yycolumn+1));
+							return new Symbol(sym.IDENT,yycolumn,yyline,yytext());
 						}
 						}		
 
 
 
 {STRING}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"STRING"));
-							return new Symbol(sym.STRINGCONSTANT,new token(yytext(),yyline+1,yycolumn+1));
+							return new Symbol(sym.STRINGCONSTANT,yycolumn,yyline,yytext());
 						}
 							
 							
@@ -250,5 +258,6 @@ NEWLINE=\n
 
 
     //Error code management
-.           {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"UNRECOGNIZED CHARACTER")); errorCounter+=1;}
+.           {TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"UNRECOGNIZED CHARACTER")); errorCounter+=1;
+				System.out.println("Caracter no reconocido en la linea: "+yyline+" columna: "+yycolumn+" caracter: "+yytext());}
 }

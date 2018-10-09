@@ -49,11 +49,9 @@ public class MiniCsharp {
             Analyzer csharpAnalyzer=new Analyzer(new BufferedReader(new FileReader(csharpCodePath)));
             parser p=new parser(csharpAnalyzer);
             p.parse();
-            for(int i=0;i<p.ErrorList.size();i++){
-                System.out.println(p.ErrorList.get(i));
-            }
+            
 
-           File f=new File(csharpCodePath);
+            File f=new File(csharpCodePath);
             Analyzer.CreateOutputFile(f.getParent()+"\\"+f.getName().substring(0,f.getName().indexOf("."))+".out");
             }
             catch (IOException e){
