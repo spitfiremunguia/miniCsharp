@@ -26,7 +26,7 @@ public class MiniCsharp {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, Exception {
         // TODO code application logic here
         Scanner scanner=new Scanner(System.in);
         
@@ -44,30 +44,21 @@ public class MiniCsharp {
         
     }
     
-    private static void AnalizerInit(String csharpCodePath) throws IOException{
+    private static void AnalizerInit(String csharpCodePath) throws IOException, Exception{
         try{
             Analyzer csharpAnalyzer=new Analyzer(new BufferedReader(new FileReader(csharpCodePath)));
-            Analyzer.Yytoken token=csharpAnalyzer.yylex();
-            
-            while(true){
-                if(token==null){
-                    System.out.println("EOF");
-                    break;
-                }
-                /*if(csharpAnalyzer.SPECIALTOKEN=="MULTERROR"){
-                    System.out.println("Multiine error");
-                    break;
-                }*/
-                
+            parser p=new parser(csharpAnalyzer);
+            p.parse();
+            for(int i=0;i<p.ErrorList.size();i++){
+                System.out.println(p.ErrorList.get(i));
             }
-            
-    
-        File f=new File(csharpCodePath);
-        Analyzer.CreateOutputFile(f.getParent()+"\\"+f.getName().substring(0,f.getName().indexOf("."))+".out");
-        }
-        catch (IOException e){
+
+           File f=new File(csharpCodePath);
+            Analyzer.CreateOutputFile(f.getParent()+"\\"+f.getName().substring(0,f.getName().indexOf("."))+".out");
+            }
+            catch (IOException e){
             System.out.println("Something wrong happen with the file...");
-        }
+            }
         
     }
     

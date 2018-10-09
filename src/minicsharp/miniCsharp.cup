@@ -1,0 +1,141 @@
+
+package minicsharp;
+import java_cup.runtime.*;
+import java_cup.runtime.*;
+import java.util.ArrayList;
+
+
+action code{::}
+parser code{:
+public  ArrayList<String>ErrorList=new ArrayList<String>();
+
+public void sintax_error(Symbol s){
+        
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+
+        System.out.println("Error Sintáctico");
+        System.out.println("\tLexema: " + lexema);
+        System.out.println("\tFila: " + fila);
+        System.out.println("\tColumna: " + columna);
+        ErrorList.add("Error in line: "+s.right+" column: "+s.left+" token: "+s.value.toString());
+
+    }
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        String lexema = s.value.toString();
+        int fila = s.right;
+        int columna = s.left;
+        
+        System.out.println("Error Sintáctico no recuperable");
+        System.out.println("\tLexema: " + lexema);
+        System.out.println("\tFila: " + fila);
+        System.out.println("\tColumna: " + columna);
+ErrorList.add("Error in line: "+s.right+" column: "+s.left+" token: "+s.value.toString());
+       
+    }
+
+:}
+
+/*NON TERMINALS*/
+non terminal PROG,DECL,DECLP,VARIABLEDECL,FUNCTIONDECL,CLASSDECL,INTERFACEDECL,VARIABLE,TYPE,FORMALS,STMTBLOCK,EXTENDSS,IMPLEMENT,FIELDP,FIELD,PROTOTYPEP,PROTOTYPE,VARIABLEDECLP,STMTP,STMT,
+EXPRP,IFSTMT,WHILESTMT,FORSTMT,BREAKSTMT,RETURNSTMT,PRINTSTMT,EXPR,ELSESTMT,EXPRPP,LVALUE,CONSTANT,CALL,ACTUALS,LIBCALL,IMPLEMENTP,AritLogic;
+
+/*TERMINAL*/
+terminal IDENT,semicolon,INT,DOUBLE,BOOL,STRING,leftsquarebrace ,rightsquarebrace,leftparen,rightparen,VOID,comma,CLASS,leftbrace,rightbrace,extends_t,implements_t,interface_t,
+IF,else_t,WHILE,FOR,RETURN,BREAK,Print,equal,THIS,New,NewArray,ReadInteger,Malloc,dot,getByte,SetByte,NULL,ReadLine,INTCONSTANT,DOUBLECONSTANT,BOOLEANCONSTANT,STRINGCONSTANT,
+arit,logic,minus,exclamation;
+
+/*PRECEDENCE*/
+
+
+precedence left equal;
+precedence left logic;
+precedence left arit;
+precedence left exclamation;
+precedence left leftsquarebrace,dot;
+precedence left leftparen;
+precedence left else_t;
+precedence left IDENT;
+
+/*START*/
+start with PROG;
+
+
+PROG::=DECL DECLP;
+DECLP::=DECL DECLP|;    
+DECL::=VARIABLEDECL|FUNCTIONDECL|CLASSDECL|INTERFACEDECL;
+VARIABLEDECL::=VARIABLE semicolon;
+VARIABLE::=TYPE IDENT;
+TYPE::=INT|DOUBLE|BOOL|STRING|IDENT|TYPE  leftsquarebrace rightsquarebrace ;
+FUNCTIONDECL::=TYPE IDENT leftparen FORMALS rightparen STMTBLOCK|VOID IDENT leftparen FORMALS rightparen STMTBLOCK;
+FORMALS::=VARIABLE |FORMALS comma VARIABLE|;
+
+CLASSDECL::=CLASS IDENT EXTENDSS IMPLEMENT leftbrace FIELDP rightbrace;
+EXTENDSS::=extends_t IDENT| ;
+
+IMPLEMENT::=implements_t IMPLEMENTP;
+IMPLEMENTP::= IDENT |IMPLEMENTP comma IDENT ;
+FIELDP::=FIELD FIELDP|;
+FIELD::=VARIABLEDECL|FUNCTIONDECL;
+
+
+
+INTERFACEDECL::=interface_t IDENT leftbrace PROTOTYPEP rightbrace;
+PROTOTYPEP::=PROTOTYPE PROTOTYPEP|;
+PROTOTYPE::= TYPE IDENT leftparen FORMALS rightparen semicolon|VOID IDENT leftparen FORMALS rightparen semicolon;
+STMTBLOCK::=leftbrace VARIABLEDECLP STMTP rightbrace;
+VARIABLEDECLP::=VARIABLEDECL VARIABLEDECLP| ;
+STMTP::=STMT STMTP| ;
+
+STMT::= EXPR semicolon
+            |semicolon
+            |IFSTMT
+            |WHILESTMT
+            |FORSTMT
+            |BREAKSTMT
+            |RETURNSTMT
+            |PRINTSTMT
+            |STMTBLOCK;
+
+
+
+
+
+EXPRP::=  EXPR| ;
+IFSTMT::= IF leftparen EXPR rightparen STMT ELSESTMT;
+ELSESTMT::=else_t STMT|;
+WHILESTMT::=WHILE leftparen EXPR rightparen STMT;
+FORSTMT::=FOR leftparen EXPRP semicolon EXPR semicolon EXPRP rightparen STMT;
+RETURNSTMT::=RETURN EXPRP semicolon;
+BREAKSTMT::=BREAK semicolon;
+PRINTSTMT ::= Print leftparen  EXPRPP rightparen semicolon;
+EXPRPP::=EXPR|EXPRPP comma EXPR;
+
+EXPR::=   LVALUE equal EXPR
+         |CONSTANT
+         |LVALUE
+         |THIS
+         |CALL
+         |leftparen EXPR rightparen
+         |EXPR AritLogic EXPR
+         |minus EXPR
+         |exclamation EXPR
+         |New leftparen IDENT rightparen
+         |NewArray leftparen EXPR comma TYPE rightparen
+         |ReadInteger leftparen rightparen
+         |ReadLine leftparen rightparen
+         |Malloc leftparen EXPR rightparen;
+
+LVALUE::=IDENT
+         |EXPR dot IDENT
+         |EXPR  leftsquarebrace EXPR rightsquarebrace;
+
+
+CALL::=IDENT leftparen ACTUALS rightparen| EXPR dot IDENT leftparen ACTUALS rightparen|EXPR dot LIBCALL leftparen ACTUALS rightparen;
+LIBCALL::=getByte leftparen EXPR rightparen|SetByte leftparen EXPR comma EXPR rightparen;
+ACTUALS::= EXPRPP|;
+CONSTANT::=INTCONSTANT|DOUBLECONSTANT|BOOLEANCONSTANT|STRINGCONSTANT|NULL;
+AritLogic::=arit|logic;
+
+
