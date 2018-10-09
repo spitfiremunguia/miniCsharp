@@ -81,7 +81,7 @@ else{
 %unicode
 %cup
 //RE declaration area
-ARITMETIC="+"|"-"|"*"|"/"|"%"
+ARITMETIC="+"|"*"|"/"|"%"
 LOGIC="=="|"<"|">"|">="|"<="|"&&"|"||"|"!="
 EQUAL="="|"+="|"-="|"*="|"/="
 ID =  [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
@@ -106,6 +106,9 @@ NEWLINE=\n
 
 {ARITMETIC}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.arit,yycolumn,yyline,yytext());
+					    }
+"-"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.minus,yycolumn,yyline,yytext());
 					    }
 				
 {LOGIC}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));

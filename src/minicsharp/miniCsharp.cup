@@ -45,7 +45,7 @@ EXPRP,IFSTMT,WHILESTMT,FORSTMT,BREAKSTMT,RETURNSTMT,PRINTSTMT,EXPR,ELSESTMT,EXPR
 
 precedence left equal;
 precedence left logic;
-precedence left arit;
+precedence left arit,minus;
 precedence left exclamation;
 precedence left leftsquarebrace,dot;
 precedence left leftparen;
@@ -115,6 +115,7 @@ EXPR::=   LVALUE equal EXPR
          |CALL
          |leftparen EXPR rightparen
          |EXPR AritLogic EXPR
+         |EXPR minus EXPR
          |minus EXPR
          |exclamation EXPR
          |New leftparen IDENT rightparen
