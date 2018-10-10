@@ -11,14 +11,14 @@ int errorCounter=0;
 public void syntax_error(Symbol s){
         errorCounter++;
 
-		report_error("Error de sintaxis No"+errorCounter+". Linea:"  + (s.right+1) +
+		report_error("Error de sintaxis recuperable No"+errorCounter+". Linea:"  + (s.right+1) +
 		" Columna: " + (s.left+1) + ". Texto: \"" + s.value + "\"", null);
 	}
 public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception 
         {
          errorCounter++;
 
-		report_error("Error de sintaxis No"+errorCounter+". Linea:"  + (s.right+1) +
+		report_error("Error de sintaxis no recuperable No"+errorCounter+". Linea:"  + (s.right+1) +
 		" Columna: " + (s.left+1) + ". Texto: \"" + s.value + "\"", null);
         }
 
@@ -32,32 +32,30 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
 
 /*TERMINAL*/
 terminal IDENT,semicolon,INT,DOUBLE,BOOL,STRING,leftsquarebrace ,rightsquarebrace,leftparen,rightparen,VOID,comma,CLASS,leftbrace,rightbrace,extends_t,implements_t,interface_t,
-IF,else_t,WHILE,FOR,RETURN,BREAK,Print,equal,THIS,New,NewArray,ReadInteger,Malloc,dot,getByte,SetByte,NULL,ReadLine,INTCONSTANT,DOUBLECONSTANT,BOOLEANCONSTANT,STRINGCONSTANT,
+IF,else_t,WHILE,FOR,RETURN,BREAK,Print,equal,THIS,New,NewArray,ReadInteger,Malloc,dot,getByte,SetByte,NULL,ReadLine,INTCONSTANT,DOUBLECONSTANT,BOOLEANCONSTANT,STRINGCONSTANT,comp,
 arit,logic,minus,exclamation;
 
 
 /*NON TERMINALS*/
 non terminal PROG,DECL,DECLP,VARIABLEDECL,FUNCTIONDECL,CLASSDECL,INTERFACEDECL,VARIABLE,TYPE,FORMALS,STMTBLOCK,EXTENDSS,IMPLEMENT,FIELDP,FIELD,PROTOTYPEP,PROTOTYPE,VARIABLEDECLP,STMTP,STMT,
-EXPRP,IFSTMT,WHILESTMT,FORSTMT,BREAKSTMT,RETURNSTMT,PRINTSTMT,EXPR,ELSESTMT,EXPRLIST,LVALUE,CONSTANT,CALL,ACTUALS,LIBCALL,IMPLEMENTP,AritLogic,LISTAVARIABLE;
+EXPRP,IFSTMT,WHILESTMT,FORSTMT,BREAKSTMT,RETURNSTMT,PRINTSTMT,EXPR,ELSESTMT,EXPRLIST,LVALUE,CONSTANT,CALL,ACTUALS,LIBCALL,IMPLEMENTP,LISTAVARIABLE;
 
 /*PRECEDENCE*/
-
-
 precedence left equal;
 precedence left logic;
+precedence nonassoc comp;
 precedence left arit,minus;
-precedence left exclamation;
-precedence left leftsquarebrace,dot;
-precedence left leftparen;
-precedence left else_t;
-precedence left IDENT;
+precedence nonassoc exclamation;
+precedence nonassoc leftsquarebrace,dot;
+precedence nonassoc else_t;
+
 
 /*START*/
 start with PROG;
 
 
 PROG::=DECL DECLP;
-DECLP::=DECL DECLP|;    
+DECLP::= DECLP DECL|;    
 
 DECL::=VARIABLEDECL|FUNCTIONDECL|CLASSDECL|INTERFACEDECL|error semicolon|error rightbrace;
 VARIABLEDECL::=VARIABLE semicolon;
@@ -72,17 +70,17 @@ EXTENDSS::=extends_t IDENT| ;
 
 IMPLEMENT::=implements_t IMPLEMENTP|;
 IMPLEMENTP::= IDENT |IMPLEMENTP comma IDENT ;
-FIELDP::=FIELD FIELDP|;
+FIELDP::= FIELDP FIELD|;
 FIELD::=VARIABLEDECL|FUNCTIONDECL;
 
 
 
 INTERFACEDECL::=interface_t IDENT leftbrace PROTOTYPEP rightbrace;
-PROTOTYPEP::=PROTOTYPE PROTOTYPEP|;
+PROTOTYPEP::= PROTOTYPEP PROTOTYPE|;
 PROTOTYPE::= TYPE IDENT leftparen FORMALS rightparen semicolon|VOID IDENT leftparen FORMALS rightparen semicolon;
 STMTBLOCK::=leftbrace VARIABLEDECLP STMTP rightbrace;
-VARIABLEDECLP::=VARIABLEDECL VARIABLEDECLP| ;
-STMTP::=STMT STMTP| ;
+VARIABLEDECLP::=   VARIABLEDECLP VARIABLEDECL| ;
+STMTP::= STMTP STMT| ;
 
 STMT::= EXPR semicolon
             |semicolon
@@ -114,8 +112,10 @@ EXPR::=   LVALUE equal EXPR
          |THIS
          |CALL
          |leftparen EXPR rightparen
-         |EXPR AritLogic EXPR
+         |EXPR arit EXPR
          |EXPR minus EXPR
+         |EXPR logic EXPR
+         |EXPR comp  EXPR
          |minus EXPR
          |exclamation EXPR
          |New leftparen IDENT rightparen
@@ -133,6 +133,5 @@ CALL::=IDENT leftparen ACTUALS rightparen| EXPR dot IDENT leftparen ACTUALS righ
 LIBCALL::=getByte leftparen EXPR rightparen|SetByte leftparen EXPR comma EXPR rightparen;
 ACTUALS::= EXPR EXPRLIST|;
 CONSTANT::=INTCONSTANT|DOUBLECONSTANT|BOOLEANCONSTANT|STRINGCONSTANT|NULL;
-AritLogic::=arit|logic;
 
 

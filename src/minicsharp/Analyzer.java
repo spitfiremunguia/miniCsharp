@@ -37,15 +37,15 @@ public class Analyzer implements java_cup.runtime.Scanner {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\11\0\1\36\1\34\1\36\1\36\1\36\22\0\1\36\1\11\1\33"+
-    "\2\0\1\4\1\7\1\0\1\65\1\66\1\2\1\1\1\73\1\12"+
-    "\1\31\1\3\1\25\7\14\2\14\1\0\1\64\1\6\1\5\1\6"+
+    "\11\0\1\36\1\34\1\36\1\36\1\36\22\0\1\36\1\3\1\33"+
+    "\2\0\1\7\1\10\1\0\1\65\1\66\1\5\1\4\1\73\1\12"+
+    "\1\31\1\6\1\25\7\14\2\14\1\0\1\64\1\1\1\2\1\1"+
     "\2\0\1\55\3\30\1\32\1\30\2\13\1\61\2\13\1\62\1\63"+
     "\1\54\1\13\1\57\1\13\1\60\5\13\1\27\2\13\1\67\1\35"+
     "\1\70\1\0\1\13\1\0\1\22\1\46\1\50\1\43\1\20\1\21"+
     "\1\47\1\51\1\37\1\13\1\53\1\23\1\40\1\42\1\45\1\41"+
     "\1\13\1\16\1\24\1\15\1\17\1\44\1\52\1\26\1\56\1\13"+
-    "\1\71\1\10\1\72\1\0\6\13\1\13\32\13\1\13\137\13\u1580\0"+
+    "\1\71\1\11\1\72\1\0\6\13\1\13\32\13\1\13\137\13\u1580\0"+
     "\1\36\u097f\0\13\36\35\0\1\36\1\36\5\0\1\36\57\0\1\36"+
     "\u0fa0\0\1\36\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\ud00f\0";
 
@@ -60,22 +60,22 @@ public class Analyzer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\3\2\1\3\1\4\1\1\1\5\1\6"+
+    "\1\0\1\1\1\2\1\3\1\4\3\5\1\1\1\6"+
     "\1\7\1\10\1\11\5\10\1\11\1\12\1\1\1\13"+
-    "\1\5\13\10\1\14\1\15\1\16\1\17\1\20\1\21"+
-    "\1\22\1\23\1\3\1\24\1\0\1\4\1\25\7\10"+
-    "\2\0\1\26\1\0\1\27\15\10\1\24\2\0\1\30"+
-    "\4\25\7\10\1\11\1\26\1\10\1\31\7\10\1\32"+
-    "\3\10\1\24\1\33\2\0\1\25\1\0\1\34\1\35"+
-    "\1\10\1\36\4\10\1\37\1\10\1\40\1\10\1\41"+
-    "\6\10\1\33\1\0\1\25\6\10\1\42\1\43\1\44"+
-    "\1\10\1\45\3\10\1\24\2\25\1\46\1\10\1\47"+
-    "\2\10\1\50\3\10\1\51\1\24\2\0\1\25\1\52"+
-    "\7\10\1\53\1\10\1\54\1\10\1\55\1\10\1\56"+
-    "\1\10\1\57";
+    "\1\6\13\10\1\14\1\15\1\16\1\17\1\20\1\21"+
+    "\1\22\1\23\1\2\1\3\1\24\1\0\1\25\1\26"+
+    "\7\10\2\0\1\27\1\0\1\30\15\10\1\24\2\0"+
+    "\1\31\4\26\7\10\1\11\1\27\1\10\1\32\7\10"+
+    "\1\33\3\10\1\24\1\34\2\0\1\26\1\0\1\35"+
+    "\1\36\1\10\1\37\4\10\1\40\1\10\1\41\1\10"+
+    "\1\42\6\10\1\34\1\0\1\26\6\10\1\43\1\44"+
+    "\1\45\1\10\1\46\3\10\1\24\2\26\1\47\1\10"+
+    "\1\50\2\10\1\51\3\10\1\52\1\24\2\0\1\26"+
+    "\1\53\7\10\1\54\1\10\1\55\1\10\1\56\1\10"+
+    "\1\57\1\10\1\60";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[178];
+    int [] result = new int[179];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -100,32 +100,32 @@ public class Analyzer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\74\0\170\0\264\0\74\0\360\0\360\0\u012c"+
-    "\0\u0168\0\360\0\170\0\u01a4\0\u01e0\0\u021c\0\u0258\0\u0294"+
+    "\0\0\0\74\0\170\0\170\0\170\0\264\0\360\0\74"+
+    "\0\u012c\0\u0168\0\264\0\u01a4\0\u01e0\0\u021c\0\u0258\0\u0294"+
     "\0\u02d0\0\u030c\0\u0348\0\74\0\u0384\0\74\0\74\0\u03c0"+
     "\0\u03fc\0\u0438\0\u0474\0\u04b0\0\u04ec\0\u0528\0\u0564\0\u05a0"+
     "\0\u05dc\0\u0618\0\74\0\74\0\74\0\74\0\74\0\74"+
-    "\0\74\0\74\0\74\0\u0654\0\u0690\0\74\0\u06cc\0\u0708"+
-    "\0\u0744\0\u0780\0\u07bc\0\u07f8\0\u0834\0\u0870\0\u08ac\0\u0384"+
-    "\0\74\0\u08e8\0\u01a4\0\u0924\0\u0960\0\u099c\0\u09d8\0\u0a14"+
-    "\0\u0a50\0\u0a8c\0\u0ac8\0\u0b04\0\u0b40\0\u0b7c\0\u0bb8\0\u0bf4"+
-    "\0\u0c30\0\u0c6c\0\u0ca8\0\74\0\u0ce4\0\u0d20\0\u0d5c\0\u0d98"+
-    "\0\u0dd4\0\u0e10\0\u0e4c\0\u0e88\0\u0ec4\0\u0f00\0\u0f3c\0\u08ac"+
-    "\0\u0384\0\u0f78\0\u0fb4\0\u0ff0\0\u102c\0\u1068\0\u10a4\0\u10e0"+
-    "\0\u111c\0\u1158\0\u1194\0\u11d0\0\u120c\0\u1248\0\u1284\0\74"+
-    "\0\u12c0\0\u12fc\0\u1338\0\u1374\0\u01a4\0\u01a4\0\u13b0\0\u01a4"+
-    "\0\u13ec\0\u1428\0\u1464\0\u14a0\0\u01a4\0\u14dc\0\u01a4\0\u1518"+
-    "\0\u01a4\0\u1554\0\u1590\0\u15cc\0\u1608\0\u1644\0\u1680\0\u16bc"+
-    "\0\u16f8\0\u1734\0\u1770\0\u17ac\0\u17e8\0\u1824\0\u1860\0\u189c"+
-    "\0\u01a4\0\u01a4\0\u01a4\0\u18d8\0\u01a4\0\u1914\0\u1950\0\u198c"+
-    "\0\u19c8\0\u1a04\0\u1a40\0\u01a4\0\u1a7c\0\u01a4\0\u1ab8\0\u1af4"+
-    "\0\u01a4\0\u1b30\0\u1b6c\0\u1ba8\0\u01a4\0\u1be4\0\u1c20\0\u16bc"+
-    "\0\u1c5c\0\u01a4\0\u1c98\0\u1cd4\0\u1d10\0\u1d4c\0\u1d88\0\u1dc4"+
-    "\0\u1e00\0\u01a4\0\u1e3c\0\u01a4\0\u1e78\0\u01a4\0\u1eb4\0\u01a4"+
-    "\0\u1ef0\0\u01a4";
+    "\0\74\0\74\0\74\0\74\0\u0654\0\u0690\0\74\0\u06cc"+
+    "\0\u0708\0\u0744\0\u0780\0\u07bc\0\u07f8\0\u0834\0\u0870\0\u08ac"+
+    "\0\u0384\0\74\0\u08e8\0\u01a4\0\u0924\0\u0960\0\u099c\0\u09d8"+
+    "\0\u0a14\0\u0a50\0\u0a8c\0\u0ac8\0\u0b04\0\u0b40\0\u0b7c\0\u0bb8"+
+    "\0\u0bf4\0\u0c30\0\u0c6c\0\u0ca8\0\74\0\u0ce4\0\u0d20\0\u0d5c"+
+    "\0\u0d98\0\u0dd4\0\u0e10\0\u0e4c\0\u0e88\0\u0ec4\0\u0f00\0\u0f3c"+
+    "\0\u08ac\0\u0384\0\u0f78\0\u0fb4\0\u0ff0\0\u102c\0\u1068\0\u10a4"+
+    "\0\u10e0\0\u111c\0\u1158\0\u1194\0\u11d0\0\u120c\0\u1248\0\u1284"+
+    "\0\74\0\u12c0\0\u12fc\0\u1338\0\u1374\0\u01a4\0\u01a4\0\u13b0"+
+    "\0\u01a4\0\u13ec\0\u1428\0\u1464\0\u14a0\0\u01a4\0\u14dc\0\u01a4"+
+    "\0\u1518\0\u01a4\0\u1554\0\u1590\0\u15cc\0\u1608\0\u1644\0\u1680"+
+    "\0\u16bc\0\u16f8\0\u1734\0\u1770\0\u17ac\0\u17e8\0\u1824\0\u1860"+
+    "\0\u189c\0\u01a4\0\u01a4\0\u01a4\0\u18d8\0\u01a4\0\u1914\0\u1950"+
+    "\0\u198c\0\u19c8\0\u1a04\0\u1a40\0\u01a4\0\u1a7c\0\u01a4\0\u1ab8"+
+    "\0\u1af4\0\u01a4\0\u1b30\0\u1b6c\0\u1ba8\0\u01a4\0\u1be4\0\u1c20"+
+    "\0\u16bc\0\u1c5c\0\u01a4\0\u1c98\0\u1cd4\0\u1d10\0\u1d4c\0\u1d88"+
+    "\0\u1dc4\0\u1e00\0\u01a4\0\u1e3c\0\u01a4\0\u1e78\0\u01a4\0\u1eb4"+
+    "\0\u01a4\0\u1ef0\0\u01a4";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[178];
+    int [] result = new int[179];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -148,144 +148,144 @@ public class Analyzer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\2\3\1\4\1\5\1\6\1\7\1\10\1\11"+
+    "\1\2\1\3\1\4\1\5\2\6\1\7\1\10\1\11"+
     "\1\12\1\13\1\14\1\15\1\16\1\17\1\14\1\20"+
     "\1\21\2\14\1\22\1\23\3\14\1\24\1\14\1\25"+
     "\1\26\1\2\1\27\1\30\2\14\1\31\1\32\1\33"+
     "\1\14\1\34\1\14\1\35\1\14\1\36\1\14\1\37"+
     "\2\14\1\40\1\41\2\14\1\42\1\43\1\44\1\45"+
-    "\1\46\1\47\1\50\1\51\1\52\101\0\1\53\70\0"+
-    "\1\54\1\55\1\0\1\53\73\0\1\56\75\0\1\56"+
-    "\74\0\1\56\76\0\16\14\1\0\1\14\4\0\25\14"+
-    "\24\0\1\15\10\0\1\15\3\0\1\57\55\0\3\14"+
-    "\1\60\12\14\1\0\1\14\4\0\12\14\1\61\12\14"+
-    "\23\0\5\14\1\62\10\14\1\0\1\14\4\0\25\14"+
-    "\23\0\10\14\1\63\2\14\1\64\2\14\1\0\1\14"+
-    "\4\0\25\14\23\0\7\14\1\65\6\14\1\0\1\14"+
-    "\4\0\25\14\23\0\2\14\1\66\13\14\1\0\1\14"+
-    "\4\0\25\14\24\0\1\15\10\0\1\15\2\67\1\0"+
-    "\1\57\42\0\33\70\1\71\1\0\1\72\36\70\13\0"+
-    "\6\14\1\73\7\14\1\0\1\14\4\0\1\14\1\74"+
-    "\1\14\1\75\21\14\23\0\4\14\1\76\11\14\1\0"+
+    "\1\46\1\47\1\50\1\51\1\52\76\0\1\53\73\0"+
+    "\1\54\76\0\1\55\1\56\75\0\1\57\74\0\1\57"+
+    "\75\0\16\14\1\0\1\14\4\0\25\14\24\0\1\15"+
+    "\10\0\1\15\3\0\1\60\55\0\3\14\1\61\12\14"+
+    "\1\0\1\14\4\0\12\14\1\62\12\14\23\0\5\14"+
+    "\1\63\10\14\1\0\1\14\4\0\25\14\23\0\10\14"+
+    "\1\64\2\14\1\65\2\14\1\0\1\14\4\0\25\14"+
+    "\23\0\7\14\1\66\6\14\1\0\1\14\4\0\25\14"+
+    "\23\0\2\14\1\67\13\14\1\0\1\14\4\0\25\14"+
+    "\24\0\1\15\10\0\1\15\2\70\1\0\1\60\42\0"+
+    "\33\71\1\72\1\0\1\73\36\71\13\0\6\14\1\74"+
+    "\7\14\1\0\1\14\4\0\1\14\1\75\1\14\1\76"+
+    "\21\14\23\0\4\14\1\77\11\14\1\0\1\14\4\0"+
+    "\25\14\23\0\16\14\1\0\1\14\4\0\6\14\1\100"+
+    "\16\14\23\0\16\14\1\0\1\14\4\0\6\14\1\101"+
+    "\16\14\23\0\3\14\1\102\12\14\1\0\1\14\4\0"+
+    "\6\14\1\103\16\14\23\0\10\14\1\104\5\14\1\0"+
     "\1\14\4\0\25\14\23\0\16\14\1\0\1\14\4\0"+
-    "\6\14\1\77\16\14\23\0\16\14\1\0\1\14\4\0"+
-    "\6\14\1\100\16\14\23\0\3\14\1\101\12\14\1\0"+
-    "\1\14\4\0\6\14\1\102\16\14\23\0\10\14\1\103"+
+    "\12\14\1\105\12\14\23\0\5\14\1\106\10\14\1\0"+
+    "\1\14\4\0\25\14\23\0\3\14\1\107\12\14\1\0"+
+    "\1\14\4\0\25\14\23\0\5\14\1\110\10\14\1\0"+
+    "\1\14\4\0\25\14\23\0\7\14\1\111\6\14\1\0"+
+    "\1\14\4\0\25\14\10\0\5\112\1\113\1\114\65\112"+
+    "\34\56\1\115\37\56\4\0\1\116\5\0\1\116\1\0"+
+    "\1\60\3\0\1\117\4\0\1\120\3\0\1\121\1\117"+
+    "\54\0\4\14\1\122\11\14\1\0\1\14\4\0\25\14"+
+    "\23\0\16\14\1\0\1\14\4\0\1\123\24\14\23\0"+
+    "\2\14\1\124\13\14\1\0\1\14\4\0\25\14\23\0"+
+    "\11\14\1\125\4\14\1\0\1\14\4\0\25\14\23\0"+
+    "\2\14\1\126\13\14\1\0\1\14\4\0\25\14\23\0"+
+    "\10\14\1\127\5\14\1\0\1\14\4\0\25\14\23\0"+
+    "\3\14\1\130\12\14\1\0\1\14\4\0\25\14\24\0"+
+    "\1\131\3\0\3\131\2\0\1\131\2\0\1\131\1\0"+
+    "\1\131\10\0\1\131\2\0\1\131\1\0\1\131\4\0"+
+    "\1\131\16\0\33\71\1\132\1\0\1\73\36\71\13\0"+
+    "\16\14\1\0\1\14\4\0\2\14\1\133\22\14\23\0"+
+    "\2\14\1\134\13\14\1\0\1\14\4\0\25\14\23\0"+
+    "\10\14\1\135\5\14\1\0\1\14\4\0\25\14\23\0"+
+    "\4\14\1\136\11\14\1\0\1\14\4\0\25\14\23\0"+
+    "\16\14\1\0\1\14\4\0\1\137\24\14\23\0\5\14"+
+    "\1\140\10\14\1\0\1\14\4\0\25\14\23\0\16\14"+
+    "\1\0\1\14\4\0\6\14\1\141\16\14\23\0\7\14"+
+    "\1\142\6\14\1\0\1\14\4\0\25\14\23\0\16\14"+
+    "\1\0\1\14\4\0\1\143\24\14\23\0\16\14\1\0"+
+    "\1\14\4\0\13\14\1\144\11\14\23\0\16\14\1\0"+
+    "\1\14\4\0\1\145\24\14\23\0\7\14\1\146\6\14"+
+    "\1\0\1\14\4\0\25\14\23\0\10\14\1\147\5\14"+
+    "\1\0\1\14\4\0\25\14\10\0\5\112\1\113\66\112"+
+    "\5\55\1\150\1\151\65\55\5\152\1\153\1\55\65\152"+
+    "\14\0\1\116\10\0\1\154\3\0\1\121\46\0\1\116"+
+    "\5\0\1\116\1\0\1\116\10\0\1\154\3\0\1\121"+
+    "\46\0\1\116\5\0\1\116\1\0\1\60\3\0\1\117"+
+    "\4\0\1\120\2\155\1\0\1\121\1\117\55\0\1\121"+
+    "\10\0\1\121\61\0\5\14\1\156\10\14\1\0\1\14"+
+    "\4\0\25\14\23\0\11\14\1\157\4\14\1\0\1\14"+
+    "\4\0\25\14\23\0\4\14\1\160\11\14\1\0\1\14"+
+    "\4\0\25\14\23\0\5\14\1\161\10\14\1\0\1\14"+
+    "\4\0\25\14\23\0\5\14\1\162\10\14\1\0\1\14"+
+    "\4\0\25\14\23\0\11\14\1\122\4\14\1\0\1\14"+
+    "\4\0\25\14\23\0\16\14\1\0\1\14\4\0\1\163"+
+    "\24\14\23\0\10\14\1\164\5\14\1\0\1\14\4\0"+
+    "\25\14\23\0\5\14\1\165\10\14\1\0\1\14\4\0"+
+    "\25\14\23\0\10\14\1\166\5\14\1\0\1\14\4\0"+
+    "\25\14\23\0\16\14\1\0\1\14\4\0\7\14\1\167"+
+    "\15\14\23\0\16\14\1\0\1\14\4\0\4\14\1\170"+
+    "\20\14\23\0\7\14\1\171\6\14\1\0\1\14\4\0"+
+    "\25\14\23\0\10\14\1\172\5\14\1\0\1\14\4\0"+
+    "\25\14\23\0\11\14\1\173\4\14\1\0\1\14\4\0"+
+    "\25\14\23\0\10\14\1\174\5\14\1\0\1\14\4\0"+
+    "\25\14\23\0\16\14\1\0\1\14\4\0\16\14\1\175"+
+    "\6\14\23\0\16\14\1\0\1\14\4\0\3\14\1\176"+
+    "\21\14\23\0\16\14\1\0\1\14\4\0\4\14\1\177"+
+    "\20\14\23\0\10\14\1\200\5\14\1\0\1\14\4\0"+
+    "\25\14\10\0\5\112\1\113\1\201\65\112\5\152\1\153"+
+    "\73\152\1\153\1\151\65\152\14\0\1\116\10\0\1\154"+
+    "\2\202\1\0\1\121\56\0\1\203\3\0\3\203\2\0"+
+    "\1\203\2\0\1\203\1\0\1\203\10\0\1\203\2\0"+
+    "\1\203\1\0\1\203\4\0\1\203\31\0\3\14\1\204"+
+    "\12\14\1\0\1\14\4\0\25\14\23\0\16\14\1\0"+
+    "\1\14\4\0\3\14\1\205\21\14\23\0\16\14\1\0"+
+    "\1\14\4\0\3\14\1\206\21\14\23\0\5\14\1\207"+
+    "\10\14\1\0\1\14\4\0\25\14\23\0\3\14\1\210"+
+    "\12\14\1\0\1\14\4\0\25\14\23\0\10\14\1\211"+
     "\5\14\1\0\1\14\4\0\25\14\23\0\16\14\1\0"+
-    "\1\14\4\0\12\14\1\104\12\14\23\0\5\14\1\105"+
-    "\10\14\1\0\1\14\4\0\25\14\23\0\3\14\1\106"+
-    "\12\14\1\0\1\14\4\0\25\14\23\0\5\14\1\107"+
-    "\10\14\1\0\1\14\4\0\25\14\23\0\7\14\1\110"+
-    "\6\14\1\0\1\14\4\0\25\14\10\0\2\111\1\112"+
-    "\1\113\70\111\34\55\1\114\37\55\1\0\1\115\10\0"+
-    "\1\115\1\0\1\57\3\0\1\116\4\0\1\117\3\0"+
-    "\1\120\1\116\54\0\4\14\1\121\11\14\1\0\1\14"+
-    "\4\0\25\14\23\0\16\14\1\0\1\14\4\0\1\122"+
-    "\24\14\23\0\2\14\1\123\13\14\1\0\1\14\4\0"+
-    "\25\14\23\0\11\14\1\124\4\14\1\0\1\14\4\0"+
-    "\25\14\23\0\2\14\1\125\13\14\1\0\1\14\4\0"+
-    "\25\14\23\0\10\14\1\126\5\14\1\0\1\14\4\0"+
-    "\25\14\23\0\3\14\1\127\12\14\1\0\1\14\4\0"+
-    "\25\14\24\0\1\130\3\0\3\130\2\0\1\130\2\0"+
-    "\1\130\1\0\1\130\10\0\1\130\2\0\1\130\1\0"+
-    "\1\130\4\0\1\130\16\0\33\70\1\131\1\0\1\72"+
-    "\36\70\13\0\16\14\1\0\1\14\4\0\2\14\1\132"+
-    "\22\14\23\0\2\14\1\133\13\14\1\0\1\14\4\0"+
-    "\25\14\23\0\10\14\1\134\5\14\1\0\1\14\4\0"+
-    "\25\14\23\0\4\14\1\135\11\14\1\0\1\14\4\0"+
-    "\25\14\23\0\16\14\1\0\1\14\4\0\1\136\24\14"+
-    "\23\0\5\14\1\137\10\14\1\0\1\14\4\0\25\14"+
-    "\23\0\16\14\1\0\1\14\4\0\6\14\1\140\16\14"+
-    "\23\0\7\14\1\141\6\14\1\0\1\14\4\0\25\14"+
-    "\23\0\16\14\1\0\1\14\4\0\1\142\24\14\23\0"+
-    "\16\14\1\0\1\14\4\0\13\14\1\143\11\14\23\0"+
-    "\16\14\1\0\1\14\4\0\1\144\24\14\23\0\7\14"+
-    "\1\145\6\14\1\0\1\14\4\0\25\14\23\0\10\14"+
-    "\1\146\5\14\1\0\1\14\4\0\25\14\10\0\2\111"+
-    "\1\112\71\111\2\54\1\147\1\150\70\54\2\151\1\152"+
-    "\1\54\70\151\14\0\1\115\10\0\1\153\3\0\1\120"+
-    "\43\0\1\115\10\0\1\115\1\0\1\115\10\0\1\153"+
-    "\3\0\1\120\43\0\1\115\10\0\1\115\1\0\1\57"+
-    "\3\0\1\116\4\0\1\117\2\154\1\0\1\120\1\116"+
-    "\55\0\1\120\10\0\1\120\61\0\5\14\1\155\10\14"+
-    "\1\0\1\14\4\0\25\14\23\0\11\14\1\156\4\14"+
-    "\1\0\1\14\4\0\25\14\23\0\4\14\1\157\11\14"+
-    "\1\0\1\14\4\0\25\14\23\0\5\14\1\160\10\14"+
-    "\1\0\1\14\4\0\25\14\23\0\5\14\1\161\10\14"+
-    "\1\0\1\14\4\0\25\14\23\0\11\14\1\121\4\14"+
+    "\1\14\4\0\14\14\1\212\10\14\23\0\11\14\1\213"+
+    "\4\14\1\0\1\14\4\0\25\14\23\0\5\14\1\214"+
+    "\10\14\1\0\1\14\4\0\25\14\23\0\3\14\1\215"+
+    "\12\14\1\0\1\14\4\0\25\14\23\0\2\14\1\216"+
+    "\13\14\1\0\1\14\4\0\25\14\23\0\16\14\1\0"+
+    "\1\14\4\0\22\14\1\217\1\220\1\14\23\0\16\14"+
+    "\1\0\1\14\4\0\6\14\1\221\16\14\16\0\1\222"+
+    "\101\0\1\223\3\0\3\223\2\0\1\223\2\0\1\223"+
+    "\1\0\1\223\10\0\1\223\2\0\1\223\1\0\1\223"+
+    "\4\0\1\223\22\0\1\116\5\0\1\116\1\0\1\203"+
+    "\3\0\3\203\2\0\1\224\2\0\1\203\1\121\1\203"+
+    "\10\0\1\203\2\0\1\203\1\0\1\203\4\0\1\203"+
+    "\31\0\16\14\1\0\1\14\4\0\3\14\1\225\21\14"+
+    "\23\0\16\14\1\0\1\14\4\0\4\14\1\226\20\14"+
+    "\23\0\16\14\1\0\1\14\4\0\10\14\1\227\14\14"+
+    "\23\0\16\14\1\0\1\14\4\0\1\14\1\230\23\14"+
+    "\23\0\6\14\1\231\7\14\1\0\1\14\4\0\25\14"+
+    "\23\0\5\14\1\232\10\14\1\0\1\14\4\0\25\14"+
+    "\23\0\3\14\1\233\12\14\1\0\1\14\4\0\25\14"+
+    "\23\0\16\14\1\0\1\14\4\0\3\14\1\234\21\14"+
+    "\23\0\16\14\1\0\1\14\4\0\1\235\24\14\23\0"+
+    "\16\14\1\0\1\14\4\0\11\14\1\236\13\14\10\0"+
+    "\5\237\1\240\1\241\65\237\14\0\1\223\3\0\3\223"+
+    "\2\0\1\242\2\0\1\223\1\121\1\223\10\0\1\223"+
+    "\2\0\1\223\1\0\1\223\4\0\1\223\22\0\1\116"+
+    "\5\0\1\116\1\0\1\203\3\0\3\203\2\0\1\224"+
+    "\2\155\1\203\1\121\1\203\10\0\1\203\2\0\1\203"+
+    "\1\0\1\203\4\0\1\203\31\0\11\14\1\243\4\14"+
+    "\1\0\1\14\4\0\25\14\23\0\5\14\1\244\10\14"+
+    "\1\0\1\14\4\0\25\14\23\0\7\14\1\245\6\14"+
+    "\1\0\1\14\4\0\25\14\23\0\7\14\1\246\6\14"+
+    "\1\0\1\14\4\0\25\14\23\0\2\14\1\247\13\14"+
     "\1\0\1\14\4\0\25\14\23\0\16\14\1\0\1\14"+
-    "\4\0\1\162\24\14\23\0\10\14\1\163\5\14\1\0"+
-    "\1\14\4\0\25\14\23\0\5\14\1\164\10\14\1\0"+
-    "\1\14\4\0\25\14\23\0\10\14\1\165\5\14\1\0"+
-    "\1\14\4\0\25\14\23\0\16\14\1\0\1\14\4\0"+
-    "\7\14\1\166\15\14\23\0\16\14\1\0\1\14\4\0"+
-    "\4\14\1\167\20\14\23\0\7\14\1\170\6\14\1\0"+
-    "\1\14\4\0\25\14\23\0\10\14\1\171\5\14\1\0"+
-    "\1\14\4\0\25\14\23\0\11\14\1\172\4\14\1\0"+
-    "\1\14\4\0\25\14\23\0\10\14\1\173\5\14\1\0"+
-    "\1\14\4\0\25\14\23\0\16\14\1\0\1\14\4\0"+
-    "\16\14\1\174\6\14\23\0\16\14\1\0\1\14\4\0"+
-    "\3\14\1\175\21\14\23\0\16\14\1\0\1\14\4\0"+
-    "\4\14\1\176\20\14\23\0\10\14\1\177\5\14\1\0"+
-    "\1\14\4\0\25\14\10\0\2\111\1\112\1\200\70\111"+
-    "\2\151\1\152\73\151\1\152\1\150\70\151\14\0\1\115"+
-    "\10\0\1\153\2\201\1\0\1\120\56\0\1\202\3\0"+
-    "\3\202\2\0\1\202\2\0\1\202\1\0\1\202\10\0"+
-    "\1\202\2\0\1\202\1\0\1\202\4\0\1\202\31\0"+
-    "\3\14\1\203\12\14\1\0\1\14\4\0\25\14\23\0"+
-    "\16\14\1\0\1\14\4\0\3\14\1\204\21\14\23\0"+
-    "\16\14\1\0\1\14\4\0\3\14\1\205\21\14\23\0"+
-    "\5\14\1\206\10\14\1\0\1\14\4\0\25\14\23\0"+
-    "\3\14\1\207\12\14\1\0\1\14\4\0\25\14\23\0"+
-    "\10\14\1\210\5\14\1\0\1\14\4\0\25\14\23\0"+
-    "\16\14\1\0\1\14\4\0\14\14\1\211\10\14\23\0"+
-    "\11\14\1\212\4\14\1\0\1\14\4\0\25\14\23\0"+
-    "\5\14\1\213\10\14\1\0\1\14\4\0\25\14\23\0"+
-    "\3\14\1\214\12\14\1\0\1\14\4\0\25\14\23\0"+
-    "\2\14\1\215\13\14\1\0\1\14\4\0\25\14\23\0"+
-    "\16\14\1\0\1\14\4\0\22\14\1\216\1\217\1\14"+
-    "\23\0\16\14\1\0\1\14\4\0\6\14\1\220\16\14"+
-    "\13\0\1\221\104\0\1\222\3\0\3\222\2\0\1\222"+
-    "\2\0\1\222\1\0\1\222\10\0\1\222\2\0\1\222"+
-    "\1\0\1\222\4\0\1\222\17\0\1\115\10\0\1\115"+
-    "\1\0\1\202\3\0\3\202\2\0\1\223\2\0\1\202"+
-    "\1\120\1\202\10\0\1\202\2\0\1\202\1\0\1\202"+
-    "\4\0\1\202\31\0\16\14\1\0\1\14\4\0\3\14"+
-    "\1\224\21\14\23\0\16\14\1\0\1\14\4\0\4\14"+
-    "\1\225\20\14\23\0\16\14\1\0\1\14\4\0\10\14"+
-    "\1\226\14\14\23\0\16\14\1\0\1\14\4\0\1\14"+
-    "\1\227\23\14\23\0\6\14\1\230\7\14\1\0\1\14"+
-    "\4\0\25\14\23\0\5\14\1\231\10\14\1\0\1\14"+
-    "\4\0\25\14\23\0\3\14\1\232\12\14\1\0\1\14"+
-    "\4\0\25\14\23\0\16\14\1\0\1\14\4\0\3\14"+
-    "\1\233\21\14\23\0\16\14\1\0\1\14\4\0\1\234"+
-    "\24\14\23\0\16\14\1\0\1\14\4\0\11\14\1\235"+
-    "\13\14\10\0\2\236\1\237\1\240\70\236\14\0\1\222"+
-    "\3\0\3\222\2\0\1\241\2\0\1\222\1\120\1\222"+
-    "\10\0\1\222\2\0\1\222\1\0\1\222\4\0\1\222"+
-    "\17\0\1\115\10\0\1\115\1\0\1\202\3\0\3\202"+
-    "\2\0\1\223\2\154\1\202\1\120\1\202\10\0\1\202"+
-    "\2\0\1\202\1\0\1\202\4\0\1\202\31\0\11\14"+
-    "\1\242\4\14\1\0\1\14\4\0\25\14\23\0\5\14"+
-    "\1\243\10\14\1\0\1\14\4\0\25\14\23\0\7\14"+
-    "\1\244\6\14\1\0\1\14\4\0\25\14\23\0\7\14"+
-    "\1\245\6\14\1\0\1\14\4\0\25\14\23\0\2\14"+
-    "\1\246\13\14\1\0\1\14\4\0\25\14\23\0\16\14"+
-    "\1\0\1\14\4\0\3\14\1\247\21\14\10\0\2\236"+
-    "\1\237\71\236\3\221\1\0\70\221\14\0\1\222\3\0"+
-    "\3\222\2\0\1\241\2\201\1\222\1\120\1\222\10\0"+
-    "\1\222\2\0\1\222\1\0\1\222\4\0\1\222\31\0"+
-    "\16\14\1\0\1\14\4\0\3\14\1\250\21\14\23\0"+
-    "\16\14\1\0\1\14\4\0\11\14\1\251\13\14\23\0"+
-    "\16\14\1\0\1\14\4\0\17\14\1\252\5\14\23\0"+
-    "\5\14\1\253\10\14\1\0\1\14\4\0\25\14\23\0"+
-    "\5\14\1\254\10\14\1\0\1\14\4\0\25\14\23\0"+
-    "\2\14\1\255\13\14\1\0\1\14\4\0\25\14\23\0"+
-    "\5\14\1\256\10\14\1\0\1\14\4\0\25\14\23\0"+
-    "\16\14\1\0\1\14\4\0\10\14\1\257\14\14\23\0"+
-    "\11\14\1\260\4\14\1\0\1\14\4\0\25\14\23\0"+
-    "\5\14\1\261\10\14\1\0\1\14\4\0\25\14\23\0"+
-    "\3\14\1\262\12\14\1\0\1\14\4\0\25\14\10\0";
+    "\4\0\3\14\1\250\21\14\10\0\5\237\1\240\66\237"+
+    "\6\222\1\0\65\222\14\0\1\223\3\0\3\223\2\0"+
+    "\1\242\2\202\1\223\1\121\1\223\10\0\1\223\2\0"+
+    "\1\223\1\0\1\223\4\0\1\223\31\0\16\14\1\0"+
+    "\1\14\4\0\3\14\1\251\21\14\23\0\16\14\1\0"+
+    "\1\14\4\0\11\14\1\252\13\14\23\0\16\14\1\0"+
+    "\1\14\4\0\17\14\1\253\5\14\23\0\5\14\1\254"+
+    "\10\14\1\0\1\14\4\0\25\14\23\0\5\14\1\255"+
+    "\10\14\1\0\1\14\4\0\25\14\23\0\2\14\1\256"+
+    "\13\14\1\0\1\14\4\0\25\14\23\0\5\14\1\257"+
+    "\10\14\1\0\1\14\4\0\25\14\23\0\16\14\1\0"+
+    "\1\14\4\0\10\14\1\260\14\14\23\0\11\14\1\261"+
+    "\4\14\1\0\1\14\4\0\25\14\23\0\5\14\1\262"+
+    "\10\14\1\0\1\14\4\0\25\14\23\0\3\14\1\263"+
+    "\12\14\1\0\1\14\4\0\25\14\10\0";
 
   private static int [] zzUnpackTrans() {
     int [] result = new int[7980];
@@ -326,13 +326,13 @@ public class Analyzer implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1\1\11\16\1\1\11\1\1\2\11"+
-    "\13\1\11\11\1\1\1\0\1\11\10\1\2\0\1\11"+
+    "\1\0\1\11\5\1\1\11\13\1\1\11\1\1\2\11"+
+    "\13\1\12\11\1\1\1\0\1\11\10\1\2\0\1\11"+
     "\1\0\17\1\2\0\1\11\33\1\1\11\2\0\1\1"+
     "\1\0\24\1\1\0\35\1\2\0\22\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[178];
+    int [] result = new int[179];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -862,36 +862,36 @@ else{
             { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"UNRECOGNIZED CHARACTER")); errorCounter+=1;
 				System.out.println("Caracter no reconocido en la linea: "+yyline+" columna: "+yycolumn+" caracter: "+yytext());
             }
-          case 48: break;
+          case 49: break;
           case 2: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
-							return new Symbol(sym.arit,yycolumn,yyline,yytext());
+							return new Symbol(sym.comp,yycolumn,yyline,yytext());
             }
-          case 49: break;
+          case 50: break;
           case 3: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"="));
 							return new Symbol(sym.equal,yycolumn,yyline,yytext());
             }
-          case 50: break;
-          case 4: 
-            { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
-							return new Symbol(sym.logic,yycolumn,yyline,yytext());
-            }
           case 51: break;
-          case 5: 
-            { /*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/
-            }
-          case 52: break;
-          case 6: 
+          case 4: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"!"));
 							return new Symbol(sym.exclamation,yycolumn,yyline,yytext());
             }
+          case 52: break;
+          case 5: 
+            { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.arit,yycolumn,yyline,yytext());
+            }
           case 53: break;
+          case 6: 
+            { /*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/
+            }
+          case 54: break;
           case 7: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.minus,yycolumn,yyline,yytext());
             }
-          case 54: break;
+          case 55: break;
           case 8: 
             { if(yytext().length()>31){
 			
@@ -903,198 +903,203 @@ else{
 							return new Symbol(sym.IDENT,yycolumn,yyline,yytext());
 						}
             }
-          case 55: break;
+          case 56: break;
           case 9: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));
 							return new Symbol(sym.INTCONSTANT,yycolumn,yyline,yytext());
             }
-          case 56: break;
+          case 57: break;
           case 10: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"."));
 						return new Symbol(sym.dot,yycolumn,yyline,yytext());
             }
-          case 57: break;
+          case 58: break;
           case 11: 
             { /*Do nothing...*/
             }
-          case 58: break;
+          case 59: break;
           case 12: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,";"));
 						return new Symbol(sym.semicolon,yycolumn,yyline,yytext());
             }
-          case 59: break;
+          case 60: break;
           case 13: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"("));
 						return new Symbol(sym.leftparen,yycolumn,yyline,yytext());
             }
-          case 60: break;
+          case 61: break;
           case 14: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,")"));
 						return new Symbol(sym.rightparen,yycolumn,yyline,yytext());
             }
-          case 61: break;
+          case 62: break;
           case 15: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"["));
 						return new Symbol(sym.leftsquarebrace,yycolumn,yyline,yytext());
             }
-          case 62: break;
+          case 63: break;
           case 16: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"]"));
 						return new Symbol(sym.rightsquarebrace,yycolumn,yyline,yytext());
             }
-          case 63: break;
+          case 64: break;
           case 17: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"{"));
 						return new Symbol(sym.leftbrace,yycolumn,yyline,yytext());
             }
-          case 64: break;
+          case 65: break;
           case 18: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"}"));
 						return new Symbol(sym.rightbrace,yycolumn,yyline,yytext());
             }
-          case 65: break;
+          case 66: break;
           case 19: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,","));
 						return new Symbol(sym.comma,yycolumn,yyline,yytext());
             }
-          case 66: break;
+          case 67: break;
           case 20: 
             { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;
             }
-          case 67: break;
+          case 68: break;
           case 21: 
+            { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.logic,yycolumn,yyline,yytext());
+            }
+          case 69: break;
+          case 22: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));
 							return new Symbol(sym.DOUBLECONSTANT,yycolumn,yyline,yytext());
             }
-          case 68: break;
-          case 22: 
+          case 70: break;
+          case 23: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"STRING"));
 							return new Symbol(sym.STRINGCONSTANT,yycolumn,yyline,yytext());
             }
-          case 69: break;
-          case 23: 
+          case 71: break;
+          case 24: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"if"));
 						return new Symbol(sym.IF,yycolumn,yyline,yytext());
             }
-          case 70: break;
-          case 24: 
+          case 72: break;
+          case 25: 
             { /*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));*/
             }
-          case 71: break;
-          case 25: 
+          case 73: break;
+          case 26: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"int"));
 						return new Symbol(sym.INT,yycolumn,yyline,yytext());
             }
-          case 72: break;
-          case 26: 
+          case 74: break;
+          case 27: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"New"));
 						return new Symbol(sym.New,yycolumn,yyline,yytext());
             }
-          case 73: break;
-          case 27: 
+          case 75: break;
+          case 28: 
             { /*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));*/
             }
-          case 74: break;
-          case 28: 
+          case 76: break;
+          case 29: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"BOOLEAN"));
 							return new Symbol(sym.BOOLEANCONSTANT,yycolumn,yyline,yytext());
             }
-          case 75: break;
-          case 29: 
+          case 77: break;
+          case 30: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"this"));
 						return new Symbol(sym.THIS,yycolumn,yyline,yytext());
             }
-          case 76: break;
-          case 30: 
+          case 78: break;
+          case 31: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"else"));
 						return new Symbol(sym.else_t,yycolumn,yyline,yytext());
             }
-          case 77: break;
-          case 31: 
+          case 79: break;
+          case 32: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"null"));
 						return new Symbol(sym.NULL,yycolumn,yyline,yytext());
             }
-          case 78: break;
-          case 32: 
+          case 80: break;
+          case 33: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"void"));
 						return new Symbol(sym.VOID,yycolumn,yyline,yytext());
             }
-          case 79: break;
-          case 33: 
+          case 81: break;
+          case 34: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"bool"));
 						return new Symbol(sym.BOOL,yycolumn,yyline,yytext());
             }
-          case 80: break;
-          case 34: 
+          case 82: break;
+          case 35: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"break"));
 						return new Symbol(sym.BREAK,yycolumn,yyline,yytext());
             }
-          case 81: break;
-          case 35: 
+          case 83: break;
+          case 36: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"class"));
 						return new Symbol(sym.CLASS,yycolumn,yyline,yytext());
             }
-          case 82: break;
-          case 36: 
+          case 84: break;
+          case 37: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"while"));
 						return new Symbol(sym.WHILE,yycolumn,yyline,yytext());
             }
-          case 83: break;
-          case 37: 
+          case 85: break;
+          case 38: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"Print"));
 						return new Symbol(sym.Print,yycolumn,yyline,yytext());
             }
-          case 84: break;
-          case 38: 
+          case 86: break;
+          case 39: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"return"));
 						return new Symbol(sym.RETURN,yycolumn,yyline,yytext());
             }
-          case 85: break;
-          case 39: 
+          case 87: break;
+          case 40: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"string"));
 						return new Symbol(sym.STRING,yycolumn,yyline,yytext());
             }
-          case 86: break;
-          case 40: 
+          case 88: break;
+          case 41: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"double"));
 						return new Symbol(sym.DOUBLE,yycolumn,yyline,yytext());
             }
-          case 87: break;
-          case 41: 
+          case 89: break;
+          case 42: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"Malloc"));
 						return new Symbol(sym.Malloc,yycolumn,yyline,yytext());
             }
-          case 88: break;
-          case 42: 
+          case 90: break;
+          case 43: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"extends"));
 						return new Symbol(sym.extends_t,yycolumn,yyline,yytext());
             }
-          case 89: break;
-          case 43: 
+          case 91: break;
+          case 44: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"NewArray"));
 						return new Symbol(sym.NewArray,yycolumn,yyline,yytext());
             }
-          case 90: break;
-          case 44: 
+          case 92: break;
+          case 45: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"ReadLine"));
 						return new Symbol(sym.ReadLine,yycolumn,yyline,yytext());
             }
-          case 91: break;
-          case 45: 
+          case 93: break;
+          case 46: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"interface"));
 						return new Symbol(sym.interface_t,yycolumn,yyline,yytext());
             }
-          case 92: break;
-          case 46: 
+          case 94: break;
+          case 47: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"implements"));
 						return new Symbol(sym.implements_t,yycolumn,yyline,yytext());
             }
-          case 93: break;
-          case 47: 
+          case 95: break;
+          case 48: 
             { TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"ReadInteger"));
 						return new Symbol(sym.ReadInteger,yycolumn,yyline,yytext());
             }
-          case 94: break;
+          case 96: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

@@ -80,10 +80,12 @@ else{
 %line
 %unicode
 %cup
+
 //RE declaration area
+COMP="<"|">"|">="|"<="|"!="|"=="
 ARITMETIC="+"|"*"|"/"|"%"
-LOGIC="=="|"<"|">"|">="|"<="|"&&"|"||"|"!="
-EQUAL="="|"+="|"-="|"*="|"/="
+LOGIC="&&"|"||"
+EQUAL="="|"+="|"-="|"*="
 ID =  [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
 BOOLEAN=true|false
 INTEGER=((0|[0-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]))
@@ -113,6 +115,9 @@ NEWLINE=\n
 				
 {LOGIC}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.logic,yycolumn,yyline,yytext());
+					    }
+{COMP}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.comp,yycolumn,yyline,yytext());
 					    }
 "!"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"!"));
 							return new Symbol(sym.exclamation,yycolumn,yyline,yytext());
