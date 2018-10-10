@@ -195,6 +195,9 @@ NEWLINE=\n
 "GetByte"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"getByte"));
 						return new Symbol(sym.getByte,yycolumn,yyline,yytext());
 					}
+"SetByte"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"setByte"));
+						return new Symbol(sym.SetByte,yycolumn,yyline,yytext());
+					}
 
 
 
