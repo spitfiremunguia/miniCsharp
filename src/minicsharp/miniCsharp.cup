@@ -33,7 +33,7 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
 /*TERMINAL*/
 terminal IDENT,semicolon,INT,DOUBLE,BOOL,STRING,leftsquarebrace ,rightsquarebrace,leftparen,rightparen,VOID,comma,CLASS,leftbrace,rightbrace,extends_t,implements_t,interface_t,
 IF,else_t,WHILE,FOR,RETURN,BREAK,Print,equal,THIS,New,NewArray,ReadInteger,Malloc,dot,getByte,SetByte,NULL,ReadLine,INTCONSTANT,DOUBLECONSTANT,BOOLEANCONSTANT,STRINGCONSTANT,comp,
-arit,logic,minus,exclamation;
+arit,logic,minus,exclamation,brackets;
 
 
 /*NON TERMINALS*/
@@ -50,6 +50,8 @@ precedence nonassoc leftsquarebrace,dot;
 precedence nonassoc else_t;
 
 
+
+
 /*START*/
 start with PROG;
 
@@ -60,7 +62,7 @@ DECLP::= DECLP DECL|;
 DECL::=VARIABLEDECL|FUNCTIONDECL|CLASSDECL|INTERFACEDECL|error semicolon|error rightbrace;
 VARIABLEDECL::=VARIABLE semicolon;
 VARIABLE::=TYPE IDENT;
-TYPE::=INT|DOUBLE|BOOL|STRING|IDENT|TYPE  leftsquarebrace rightsquarebrace ;
+TYPE::=INT|DOUBLE|BOOL|STRING|IDENT|TYPE  brackets ;
 FUNCTIONDECL::=TYPE IDENT leftparen FORMALS rightparen STMTBLOCK|VOID IDENT leftparen FORMALS rightparen STMTBLOCK;
 FORMALS::=VARIABLE LISTAVARIABLE|;
 LISTAVARIABLE::=comma VARIABLE LISTAVARIABLE|;
@@ -80,7 +82,7 @@ PROTOTYPEP::= PROTOTYPEP PROTOTYPE|;
 PROTOTYPE::= TYPE IDENT leftparen FORMALS rightparen semicolon|VOID IDENT leftparen FORMALS rightparen semicolon;
 STMTBLOCK::=leftbrace VARIABLEDECLP STMTP rightbrace;
 VARIABLEDECLP::=   VARIABLEDECLP VARIABLEDECL| ;
-STMTP::= STMTP STMT| ;
+STMTP::=  STMT STMTP| ;
 
 STMT::= EXPR semicolon
             |semicolon
@@ -91,10 +93,6 @@ STMT::= EXPR semicolon
             |RETURNSTMT
             |PRINTSTMT
             |STMTBLOCK;
-
-
-
-
 
 EXPRP::=  EXPR| ;
 IFSTMT::= IF leftparen EXPR rightparen STMT ELSESTMT;

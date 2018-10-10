@@ -208,6 +208,9 @@ NEWLINE=\n
 ")"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,")"));
 						return new Symbol(sym.rightparen,yycolumn,yyline,yytext());
 					}
+"[]"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"[]"));
+						return new Symbol(sym.brackets,yycolumn,yyline,yytext());
+					}
 "["					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"["));
 						return new Symbol(sym.leftsquarebrace,yycolumn,yyline,yytext());
 					}
@@ -245,7 +248,7 @@ NEWLINE=\n
 						}
 						else{
 							TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
-							return new Symbol(sym.IDENT,yycolumn,yyline,yytext());
+							return new Symbol(sym.IDENT,yycolumn,yyline,"ID");
 						}
 						}		
 
