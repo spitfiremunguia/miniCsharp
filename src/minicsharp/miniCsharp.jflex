@@ -192,7 +192,9 @@ NEWLINE=\n
 "Malloc"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"Malloc"));
 						return new Symbol(sym.Malloc,yycolumn,yyline,yytext());
 					}
-
+"GetByte"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"getByte"));
+						return new Symbol(sym.getByte,yycolumn,yyline,yytext());
+					}
 
 
 

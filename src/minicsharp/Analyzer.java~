@@ -901,7 +901,7 @@ else{
 						}
 						else{
 							TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
-							return new Symbol(sym.IDENT,yycolumn,yyline,yytext());
+							return new Symbol(sym.IDENT,yycolumn,yyline,"ID");
 						}
             }
           case 57: break;
