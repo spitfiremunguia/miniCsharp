@@ -93,7 +93,7 @@ DOUBLE=([0-9]+\.[0-9]*({INTEGER}*[eE]?[-+]?{INTEGER}*[\.]?[0-9]*)?)
 STRING=(\"([^\"\n]|\\.)*\")
 MULTILINECOMMENTERROR="/*"("*"[^/]|[^*/]|[^*]"/")*
 MULTILINECOMMENT="\/\*"~"\*\/"
-NORMALCOMMENT="\/\/"~"\n"
+NORMALCOMMENT="//"(.)*
 WHITESPACES=[\r|\t|\f|\s|\g]
 NEWLINE=\n
 
@@ -102,6 +102,7 @@ NEWLINE=\n
 
     //RE behaviour code
 
+
 {EQUAL}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"="));
 							return new Symbol(sym.equal,yycolumn,yyline,yytext());
 						}
@@ -109,6 +110,7 @@ NEWLINE=\n
 {ARITMETIC}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.arit,yycolumn,yyline,yytext());
 					    }
+{NORMALCOMMENT}			{}
 "-"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.minus,yycolumn,yyline,yytext());
 					    }
@@ -144,6 +146,7 @@ NEWLINE=\n
 "bool"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"bool"));
 						return new Symbol(sym.BOOL,yycolumn,yyline,yytext());
 					}
+
 "string"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"string"));
 						return new Symbol(sym.STRING,yycolumn,yyline,yytext());
 					}
@@ -158,6 +161,11 @@ NEWLINE=\n
 					}
 "this"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"this"));
 						return new Symbol(sym.THIS,yycolumn,yyline,yytext());
+					
+					}
+"for"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"for"));
+						return new Symbol(sym.FOR,yycolumn,yyline,yytext());
+					
 					}
 "while"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"while"));
 						return new Symbol(sym.WHILE,yycolumn,yyline,yytext());
@@ -264,9 +272,9 @@ NEWLINE=\n
 						}
 							
 							
-{MULTILINECOMMENT}		{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"MULTILINE_COMMENT"));*/}
+{MULTILINECOMMENT}		{}
 {MULTILINECOMMENTERROR} { TokenList.add(CreateTokenLog(true,yytext(),yyline,yycolumn,"MULTILINE_COMMENT_ERROR_MISSING *\\"));errorCounter+=1;}
-{NORMALCOMMENT}			{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"NORMAL_COMMENT"));*/}
+
 
 {NEWLINE}				{/*Do nothing...*/}
 {WHITESPACES}			{/*TokenList.add(CreateTokenLog(false,yytext(),yyline,yycolumn,"WHITE_SPACE"));*/}
