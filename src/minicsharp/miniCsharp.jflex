@@ -82,20 +82,20 @@ else{
 %cup
 
 //RE declaration area
-COMP="<"|">"|">="|"<="|"!="|"=="
-ARITMETIC="+"|"*"|"/"|"%"
-LOGIC="&&"|"||"
-EQUAL="="|"+="|"-="|"*="
+COMP="<"|">"|">="|"<="
+/*ARITMETIC="+"|"*"|"/"|"%"*/
+EQUAL="="
 ID =  [a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*
 BOOLEAN=true|false
 INTEGER=((0|[0-9][0-9]*)|(0((x|X)[0-9a-fA-F]+)|[0-7]))
-DOUBLE=([0-9]+\.[0-9]*({INTEGER}*[eE]?[-+]?{INTEGER}*[\.]?[0-9]*)?)
+DOUBLE= {INTEGER}+\.{INTEGER}+  //([0-9]+\.[0-9]*({INTEGER}*[eE]?[-+]?{INTEGER}*[\.]?[0-9]*)?)
 STRING=(\"([^\"\n]|\\.)*\")
 MULTILINECOMMENTERROR="/*"("*"[^/]|[^*/]|[^*]"/")*
 MULTILINECOMMENT="\/\*"~"\*\/"
 NORMALCOMMENT="//"(.)*
 WHITESPACES=[\r|\t|\f|\s|\g]
 NEWLINE=\n
+INCLUDEPATH="<"{ID}\.{ID}">"
 
 %%
 <YYINITIAL> {
@@ -107,17 +107,44 @@ NEWLINE=\n
 							return new Symbol(sym.equal,yycolumn,yyline,yytext());
 						}
 
-{ARITMETIC}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
-							return new Symbol(sym.arit,yycolumn,yyline,yytext());
-					    }
-{NORMALCOMMENT}			{}
+"=="					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"=="));
+							return new Symbol(sym.T_EQUAL,yycolumn,yyline,yytext());}
+"!="					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"!="));
+							return new Symbol(sym.T_NOTEQUAL,yycolumn,yyline,yytext());}
+
+
+"+"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"PLUS"));
+							return new Symbol(sym.T_plus,yycolumn,yyline,yytext());}
+"*"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"MUL"));
+							return new Symbol(sym.T_mul,yycolumn,yyline,yytext());}
+"%"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"MOD"));
+							return new Symbol(sym.T_mod,yycolumn,yyline,yytext());}
+"/"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DIV"));
+						return new Symbol(sym.T_div,yycolumn,yyline,yytext());}
+
 "-"						{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.minus,yycolumn,yyline,yytext());
 					    }
-				
-{LOGIC}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
-							return new Symbol(sym.logic,yycolumn,yyline,yytext());
+
+"&&"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"T_AND"));
+							return new Symbol(sym.T_AND,yycolumn,yyline,yytext());
 					    }
+"||"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"T_OR"));
+							return new Symbol(sym.T_OR,yycolumn,yyline,yytext());
+					    }	
+
+
+
+
+/*{ARITMETIC}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.arit,yycolumn,yyline,yytext());
+					    }*/
+{NORMALCOMMENT}			{}
+
+				
+/*{LOGIC}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+							return new Symbol(sym.logic,yycolumn,yyline,yytext());
+					    }*/
 {COMP}					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
 							return new Symbol(sym.comp,yycolumn,yyline,yytext());
 					    }
@@ -206,7 +233,21 @@ NEWLINE=\n
 "SetByte"			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"setByte"));
 						return new Symbol(sym.SetByte,yycolumn,yyline,yytext());
 					}
+"const"				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"const"));
+						return new Symbol(sym.T_const,yycolumn,yyline,yytext());
+					}
 
+"include"			{
+
+						TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"include"));
+						return new Symbol(sym.T_include,yycolumn,yyline,yytext());
+
+					}
+"#"					{
+						TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"#"));
+						return new Symbol(sym.numeral,yycolumn,yyline,yytext());
+
+					}
 
 
 ";"					{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,";"));
@@ -240,19 +281,21 @@ NEWLINE=\n
 						return new Symbol(sym.comma,yycolumn,yyline,yytext());
 					}
 
-
+{INCLUDEPATH}			{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,yytext()));
+						return new Symbol(sym.T_includepath,yycolumn,yyline,yytext());}
 
 {INTEGER}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"INTEGER"));
-							return new Symbol(sym.INTCONSTANT,yycolumn,yyline,yytext());
+							return new Symbol(sym.INTCONSTANT,yycolumn,yyline,Integer.parseInt(yytext()));
 						}
 {DOUBLE}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"DOUBLE"));
-							return new Symbol(sym.DOUBLECONSTANT,yycolumn,yyline,yytext());
+							return new Symbol(sym.DOUBLECONSTANT,yycolumn,yyline,Double.valueOf(yytext()));
 						}
 
 
 
 {BOOLEAN}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"BOOLEAN"));
-							return new Symbol(sym.BOOLEANCONSTANT,yycolumn,yyline,yytext());
+							boolean t=yytext().contains("true");
+							return new Symbol(sym.BOOLEANCONSTANT,yycolumn,yyline,t);
 						}
 {ID}       				 {if(yytext().length()>31){
 			
@@ -261,14 +304,14 @@ NEWLINE=\n
 						}
 						else{
 							TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"IDENTIFIER"));
-							return new Symbol(sym.IDENT,yycolumn,yyline,"ID");
+							return new Symbol(sym.IDENT,yycolumn,yyline,yytext());
 						}
 						}		
 
 
 
 {STRING}				{TokenList.add(CreateTokenLog(commentError,yytext(),yyline,yycolumn,"STRING"));
-							return new Symbol(sym.STRINGCONSTANT,yycolumn,yyline,yytext());
+							return new Symbol(sym.STRINGCONSTANT,yycolumn,yyline,yytext().replace("\"",""));
 						}
 							
 							

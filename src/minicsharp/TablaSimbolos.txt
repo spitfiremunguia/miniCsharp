@@ -1,0 +1,19 @@
+Añadido: ID: t1                              	 Ambito: Global              	 Tipo:int                 	 Objeto: Constante           	 Valor: 
+Añadido: ID: Program                         	 Ambito: Global              	 Tipo:Program             	 Objeto: Clase               	 Valor: 
+Añadido: ID: test_global                     	 Ambito: Program             	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Añadido: ID: f1                              	 Ambito: Program             	 Tipo:int                 	 Objeto: Funcion             	 Valor: 
+Añadido: ID: a                               	 Ambito: f1                  	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Añadido: ID: b                               	 Ambito: f1                  	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Añadido: ID: c                               	 Ambito: f1                  	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Params:  ID: f1                              	 Ambito: Program             	 Tipo:int                 	 Objeto: Funcion             	 Valor: 	: PARAMS: int:a,int:c,int:b
+Cambio:  ID: c                               	 Ambito: f1                  	 Tipo:int                 	 Objeto: Variable            	 Valor: 2
+Cambio:  ID: c                                	 Ambito: Program             	 Tipo:int                 	 Objeto: Funcion             	 Valor: 2
+Añadido: ID: main                                Ambito: f1                  	 Tipo:int                 	 Objeto: Variable            	 Valor: 3
+Cambio:  ID: f1                                  Ambito: Program             	 Tipo:void                	 Objeto: Procedimiento       	 Valor: 
+Añadido: ID: p                               	 Ambito: main                	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Añadido: ID: r                               	 Ambito: main                	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Params:  ID: main                            	 Ambito: Program             	 Tipo:void                	 Objeto: Procedimiento       	 Valor: 	: PARAMS: int:p,int:r
+Añadido: ID: x                               	 Ambito: Program             	 Tipo:int                 	 Objeto: Variable            	 Valor: 
+Añadido: ID: main2                           	 Ambito: Program             	 Tipo:void                	 Objeto: Procedimiento       	 Valor: 
+Params:  ID: main2                           	 Ambito: Program             	 Tipo:void                	 Objeto: Procedimiento       	 Valor: 	: PARAMS: 
+Cambio:  ID: t1                              	 Ambito: Global              	 Tipo:int                 	 Objeto: Constante           	 Valor: 2

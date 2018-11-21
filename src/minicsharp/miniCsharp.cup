@@ -1,7 +1,7 @@
     
 package minicsharp;
 import java_cup.runtime.Symbol;
-
+import java.util.LinkedList;
 
 
 
@@ -29,22 +29,50 @@ public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
 
 
 
+init with{:Utilidades.pilaAmbito.push(Utilidades.nombreAmbito); :}
+
+
+
 
 /*TERMINAL*/
-terminal IDENT,semicolon,INT,DOUBLE,BOOL,STRING,leftsquarebrace ,rightsquarebrace,leftparen,rightparen,VOID,comma,CLASS,leftbrace,rightbrace,extends_t,implements_t,interface_t,
-IF,else_t,WHILE,FOR,RETURN,BREAK,Print,equal,THIS,New,NewArray,ReadInteger,Malloc,dot,getByte,SetByte,NULL,ReadLine,INTCONSTANT,DOUBLECONSTANT,BOOLEANCONSTANT,STRINGCONSTANT,comp,
-arit,logic,minus,exclamation,brackets;
+terminal semicolon,leftsquarebrace ,rightsquarebrace,leftparen,rightparen,VOID,CLASS,leftbrace,rightbrace,extends_t,implements_t,interface_t,
+IF,else_t,WHILE,FOR,RETURN,BREAK,Print,equal,THIS,New,NewArray,ReadInteger,Malloc,dot,getByte,SetByte,NULL,ReadLine,
+minus,exclamation,brackets,T_plus,T_mul,T_div,T_mod,T_AND,T_OR,T_EQUAL,T_NOTEQUAL,T_const,T_include,numeral,T_includepath;
+
+terminal String IDENT;
+terminal String INT,DOUBLE,BOOL,STRING;
+terminal int INTCONSTANT;
+terminal double DOUBLECONSTANT;
+terminal boolean BOOLEANCONSTANT;
+terminal String STRINGCONSTANT;
+terminal String comma;
+terminal String comp;
 
 
 /*NON TERMINALS*/
-non terminal PROG,DECL,DECLP,VARIABLEDECL,FUNCTIONDECL,CLASSDECL,INTERFACEDECL,VARIABLE,TYPE,FORMALS,STMTBLOCK,EXTENDSS,IMPLEMENT,FIELDP,FIELD,PROTOTYPEP,PROTOTYPE,VARIABLEDECLP,STMTP,STMT,
-EXPRP,IFSTMT,WHILESTMT,FORSTMT,BREAKSTMT,RETURNSTMT,PRINTSTMT,EXPR,ELSESTMT,EXPRLIST,LVALUE,CONSTANT,CALL,ACTUALS,LIBCALL,IMPLEMENTP,LISTAVARIABLE;
+non terminal PROG,DECL,DECLP,VARIABLEDECL,FUNCTIONDECL,CLASSDECL,INTERFACEDECL,STMTBLOCK,EXTENDSS,IMPLEMENT,FIELDP,FIELD,PROTOTYPEP,PROTOTYPE,VARIABLEDECLP,STMTP,STMT,
+IFSTMT,WHILESTMT,FORSTMT,BREAKSTMT,RETURNSTMT,PRINTSTMT,ELSESTMT,EXPRLIST,ACTUALS,LIBCALL,IMPLEMENTP,INCLUDESTMT,INCLUDE;
+
+ 
+non terminal String TYPE;
+non terminal Expresion CONSTANT;
+non terminal Expresion LVALUE;
+non terminal Expresion EXPR,EXPRP;
+non terminal String[] FORMALS;
+non terminal String LISTAVARIABLE;
+non terminal String VARIABLE;
+non terminal Expresion CALL;
+
 
 /*PRECEDENCE*/
 precedence left equal;
-precedence left logic;
+precedence left T_OR;
+precedence left T_AND;
+precedence nonassoc T_EQUAL,T_NOTEQUAL;
 precedence nonassoc comp;
-precedence left arit,minus;
+
+precedence left T_plus,minus;
+precedence left T_mul,T_div,T_mod;
 precedence nonassoc exclamation;
 precedence nonassoc leftsquarebrace,dot;
 precedence nonassoc else_t;
@@ -56,18 +84,89 @@ precedence nonassoc else_t;
 start with PROG;
 
 
-PROG::=DECL DECLP;
+PROG::=INCLUDESTMT DECL DECLP;
+
+
+INCLUDESTMT::= INCLUDE INCLUDESTMT|;
+INCLUDE::=numeral T_include T_includepath;
+
 DECLP::= DECLP DECL|;    
 
-DECL::=VARIABLEDECL|FUNCTIONDECL|CLASSDECL|INTERFACEDECL|error semicolon|error rightbrace;
+DECL::=VARIABLEDECL
+                   |FUNCTIONDECL
+                   |CLASSDECL
+                   |INTERFACEDECL
+                   |error semicolon|error rightbrace;
 VARIABLEDECL::=VARIABLE semicolon;
-VARIABLE::=TYPE IDENT;
-TYPE::=INT|DOUBLE|BOOL|STRING|IDENT|TYPE  brackets ;
-FUNCTIONDECL::=TYPE IDENT leftparen FORMALS rightparen STMTBLOCK|VOID IDENT leftparen FORMALS rightparen STMTBLOCK;
-FORMALS::=VARIABLE LISTAVARIABLE|;
-LISTAVARIABLE::=comma VARIABLE LISTAVARIABLE|;
+VARIABLE::=TYPE:t1 IDENT:id1    {: 
+                                Simbolo s=new Simbolo(id1,Utilidades.nombreAmbito,t1,"");
+                                s.desc="Variable";
+                                Utilidades.AnadirTabla(s);
+                                RESULT=t1+":"+id1;
+                                :} 
+                                | T_const TYPE:t2 IDENT:id2  {:
+                                Simbolo s=new Simbolo(id2,Utilidades.nombreAmbito,t2,"");
+                                s.desc="Constante";
+                                Utilidades.AnadirTabla(s);
+                                RESULT=t2+":"+id2;
+                                :};
+                               
+                                                     
+TYPE::=INT:IN1  {:RESULT=IN1;:}
+        |DOUBLE:DB1 {:RESULT=DB1;:}
+        |BOOL:B1   {:RESULT=B1;:}
+        |STRING:S1 {:RESULT=S1;:}
+        |IDENT:id1  {:RESULT=id1;:}
+        |TYPE  brackets ;
 
-CLASSDECL::=CLASS IDENT EXTENDSS IMPLEMENT leftbrace FIELDP rightbrace;
+FUNCTIONDECL::=TYPE:t1 IDENT:id1 {:Simbolo s=new Simbolo(id1.toString(),Utilidades.nombreAmbito,t1,"");s.desc="Funcion" ;
+                                                                       Utilidades.AnadirTabla(s);:}leftparen{: Utilidades.pilaAmbito.push(Utilidades.nombreAmbito);Utilidades.ambitoAnterior=Utilidades.nombreAmbito;Utilidades.nombreAmbito=id1;:} 
+                                                                        FORMALS:f1{:
+                                                                        //buscar la funcion ya anadir parametros
+                                                                                Utilidades.Parametros(id1,Utilidades.ambitoAnterior,f1);
+                                                                        :}
+                                                                        
+                                                                         rightparen STMTBLOCK{:
+                                                                         //Utilidades.EliminarVariable(Utilidades.nombreAmbito) ;
+                                                                         Utilidades.nombreAmbito=Utilidades.pilaAmbito.pop();//vuelvo al ambito anterior
+                                                                         Utilidades.ambitoAnterior=Utilidades.nombreAmbito;
+                                                                        :}
+                                                                        
+              |VOID IDENT:id1 {: Simbolo s=new Simbolo(id1.toString(),Utilidades.nombreAmbito,"void",""); 
+                                                                        s.desc="Procedimiento";
+                                                                        Utilidades.AnadirTabla(s);:}
+                                                                        leftparen{: Utilidades.pilaAmbito.push(Utilidades.nombreAmbito);Utilidades.ambitoAnterior=Utilidades.nombreAmbito;Utilidades.nombreAmbito=id1;
+                                                                        :} 
+                                                                        FORMALS:f1 {: Utilidades.Parametros(id1,Utilidades.ambitoAnterior,f1);:}
+                                                                        rightparen STMTBLOCK 
+                                                                        {: 
+                                                                                 //Utilidades.EliminarVariable(Utilidades.nombreAmbito) ;
+                                                                                 Utilidades.nombreAmbito=Utilidades.pilaAmbito.pop();
+                                                                                 Utilidades.ambitoAnterior=Utilidades.nombreAmbito;
+                                                                        :};
+                                                                       
+
+                                                                         
+FORMALS::=VARIABLE:v1 LISTAVARIABLE:l1{:
+String result=v1+Utilidades.params;
+Utilidades.params="";
+RESULT=result.split(",");
+:}|{:RESULT=new String[]{""};:};
+
+LISTAVARIABLE::=comma:c1 VARIABLE:v1 LISTAVARIABLE{:
+                                                Utilidades.params+=c1+v1;
+                                                :}|;
+
+CLASSDECL::=CLASS IDENT:id1  {:Simbolo s=new Simbolo(id1.toString(),Utilidades.nombreAmbito,id1); 
+                                s.desc="Clase";
+                                Utilidades.AnadirTabla(s);:} 
+                                EXTENDSS IMPLEMENT leftbrace {:Utilidades.pilaAmbito.push(Utilidades.nombreAmbito);Utilidades.ambitoAnterior=Utilidades.nombreAmbito;Utilidades.nombreAmbito=id1;:}FIELDP
+                                rightbrace{:
+                                            //Utilidades.EliminarVariable(Utilidades.nombreAmbito); 
+                                            Utilidades.nombreAmbito=Utilidades.pilaAmbito.pop();
+                                            Utilidades.ambitoAnterior=Utilidades.nombreAmbito;
+                                            :};
+                                                                       
 EXTENDSS::=extends_t IDENT| ;
 
 IMPLEMENT::=implements_t IMPLEMENTP|;
@@ -94,42 +193,83 @@ STMT::= EXPR semicolon
             |PRINTSTMT
             |STMTBLOCK;
 
-EXPRP::=  EXPR| ;
+EXPRP::=  EXPR:E1{:RESULT=E1;:}| ;
 IFSTMT::= IF leftparen EXPR rightparen STMT ELSESTMT;
 ELSESTMT::=else_t STMT|;
 WHILESTMT::=WHILE leftparen EXPR rightparen STMT;
 FORSTMT::=FOR leftparen EXPRP semicolon EXPR semicolon EXPRP rightparen STMT;
-RETURNSTMT::=RETURN EXPRP semicolon;
+RETURNSTMT::=RETURN EXPR:e1{:
+
+Utilidades.verReturn(e1);
+
+
+:} semicolon;
 BREAKSTMT::=BREAK semicolon;
 PRINTSTMT ::= Print leftparen  EXPR EXPRLIST rightparen semicolon;
-EXPRLIST::=comma EXPR EXPRLIST|;
+EXPRLIST::=comma EXPR:exp1{:Utilidades.GlobalExpList.add(exp1);:} EXPRLIST|;
 
-EXPR::=   LVALUE equal EXPR
-         |CONSTANT
-         |LVALUE
+EXPR::=   LVALUE:l1 equal EXPR:r1{:
+                if(r1.tipo.equals("ID"))
+                {       System.out.println("Llego aca con: "+l1.value);
+                        Simbolo s=Utilidades.traerVariable(String.valueOf(r1.value),Utilidades.nombreAmbito);
+                        if(s!=null){r1.value=s.valor;r1.tipo=s.tipo;}
+                        else{
+                                System.out.println("Error grande");
+                        }
+                }
+        
+                         Utilidades.Actualizar(String.valueOf(l1.value),Utilidades.nombreAmbito,r1.value,r1.tipo);Utilidades.resultadoActual=null; System.out.println(l1.value+"="+r1.value);
+               
+               :}
+         |CONSTANT:c1{:RESULT=c1;:}
+         |LVALUE:l1{:RESULT=l1;:}
          |THIS
-         |CALL
-         |leftparen EXPR rightparen
-         |EXPR arit EXPR
-         |EXPR minus EXPR
-         |EXPR logic EXPR
-         |EXPR comp  EXPR
-         |minus EXPR
-         |exclamation EXPR
+         |CALL:c1{:RESULT=c1;:}
+         |leftparen EXPR:e1{:RESULT=e1;:} rightparen
+         |EXPR:e1 T_plus EXPR:e2{:RESULT=Utilidades.nuevaSuma(e1,e2);:}
+         |EXPR:e1 minus EXPR:e2{:RESULT=Utilidades.nuevaResta(e1,e2);:} 
+         |EXPR:e1 T_mul EXPR:e2{:RESULT=Utilidades.nuevaMult(e1,e2);:}
+         |EXPR:e1 T_div EXPR:e2{:RESULT=Utilidades.nuevaDiv(e1,e2);:}   
+         |EXPR:e1 T_mod EXPR:e2{:RESULT=Utilidades.nuevoMod(e1,e2);:}
+         |EXPR:e1 T_AND EXPR:e2{:RESULT=Utilidades.nuevaAnd(e1,e2);:}
+         |EXPR:e1 T_OR  EXPR:e2{:RESULT=Utilidades.nuevaOr(e1,e2);:}
+         |EXPR:e1 comp:c1  EXPR:e2{:RESULT=Utilidades.nuevaComp(e1,c1,e2);:}
+         |EXPR:e1 T_EQUAL  EXPR:e2{:RESULT=Utilidades.nuevaEqual(e1,e2);:}
+         |EXPR:e1 T_NOTEQUAL  EXPR:e2{:RESULT=Utilidades.nuevaNotEqual(e1,e2);:}
+         |minus EXPR:a{:RESULT=Utilidades.newNegativo(a);:}
+         |exclamation EXPR:a{:RESULT=Utilidades.nuevaNot(a);:}
          |New leftparen IDENT rightparen
          |NewArray leftparen EXPR comma TYPE rightparen
          |ReadInteger leftparen rightparen
          |ReadLine leftparen rightparen
          |Malloc leftparen EXPR rightparen;
 
-LVALUE::=IDENT
-         |EXPR dot IDENT
+LVALUE::=IDENT:id1{:
+                        RESULT=new Expresion(id1,"ID");
+                  :}
+         |EXPR:E1 dot IDENT: id1{:
+                                        
+                                        RESULT=new Expresion(id1,"HOLA");   
+                                :}
          |EXPR  leftsquarebrace EXPR rightsquarebrace;
 
 
-CALL::=IDENT leftparen ACTUALS rightparen| EXPR dot IDENT leftparen ACTUALS rightparen|EXPR dot LIBCALL leftparen ACTUALS rightparen;
+CALL::=IDENT:id1 leftparen ACTUALS{:Utilidades.VerificarParametros(id1,Utilidades.nombreAmbito);RESULT=Utilidades.SimboloAExpresion(Utilidades.TraerSimbolo(id1,Utilidades.nombreAmbito));:} rightparen{:Utilidades.GlobalExpList=new LinkedList<Expresion>();:}
+| EXPR:exp1 dot IDENT:ide2 leftparen ACTUALS {:Utilidades.VerificarParametros(ide2,String.valueOf(exp1.value));
+RESULT=Utilidades.SimboloAExpresion(Utilidades.TraerSimbolo(ide2,Utilidades.nombreAmbito));
+
+:}rightparen
+{:Utilidades.TraerSimbolo(ide2,Utilidades.nombreAmbito);:}
+
+
+
+|EXPR dot LIBCALL leftparen ACTUALS rightparen      ;
 LIBCALL::=getByte leftparen EXPR rightparen|SetByte leftparen EXPR comma EXPR rightparen;
-ACTUALS::= EXPR EXPRLIST|;
-CONSTANT::=INTCONSTANT|DOUBLECONSTANT|BOOLEANCONSTANT|STRINGCONSTANT|NULL;
+ACTUALS::= EXPR:exp1{:Utilidades.GlobalExpList.add(exp1);:} EXPRLIST|;
+CONSTANT::= INTCONSTANT:A1{:RESULT=new Expresion(A1,"int");:}
+           |DOUBLECONSTANT:A1{:RESULT=new Expresion(A1,"double");:}
+           |BOOLEANCONSTANT:A1{:RESULT=new Expresion(A1,"bool");:}
+           |STRINGCONSTANT:A1{:RESULT=new Expresion("\""+A1+"\"","string");:}
+           |NULL:A1{:RESULT=new Expresion(5,"null");:};
 
 

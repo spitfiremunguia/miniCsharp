@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 
@@ -48,7 +49,9 @@ public class MiniCsharp {
         try{
             Analyzer csharpAnalyzer=new Analyzer(new BufferedReader(new FileReader(csharpCodePath)));
             parser p=new parser(csharpAnalyzer);
+            
             p.parse();
+            LinkedList<Simbolo>l=Utilidades.unaTabla.Tabla_simbolos;
             
 
             File f=new File(csharpCodePath);
