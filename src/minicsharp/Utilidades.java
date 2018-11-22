@@ -111,11 +111,13 @@ public class Utilidades {
     public static Expresion nuevaSuma(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -158,11 +160,13 @@ public class Utilidades {
     public static Expresion nuevaResta(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -197,6 +201,7 @@ public class Utilidades {
     public static Expresion newNegativo(Expresion a) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
@@ -220,11 +225,13 @@ public class Utilidades {
     public static Expresion nuevaMult(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -257,11 +264,13 @@ public class Utilidades {
     public static Expresion nuevaDiv(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -296,11 +305,13 @@ public class Utilidades {
     public static Expresion nuevoMod(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -364,11 +375,13 @@ public class Utilidades {
     public static Expresion nuevaNotEqual(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -392,11 +405,13 @@ public class Utilidades {
     public static Expresion nuevaAnd(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -419,6 +434,7 @@ public class Utilidades {
     public static Expresion nuevaOr(Expresion a, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){return null;}
             a.tipo = s.tipo;
             a.value = s.valor;
         }
@@ -446,11 +462,17 @@ public class Utilidades {
     public static Expresion nuevaComp(Expresion a, String cmp, Expresion b) {
         if (a.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+            if(s==null){
+                return null;
+            }
             a.tipo = s.tipo;
             a.value = s.valor;
         }
         if (b.tipo.equals("ID")) {
             Simbolo s = Utilidades.traerVariable(String.valueOf(b.value), Utilidades.nombreAmbito);
+            if(s==null){
+                return null;
+            }
             b.tipo = s.tipo;
             b.value = s.valor;
         }
@@ -493,6 +515,7 @@ public class Utilidades {
         try {
             if (a.tipo.equals("ID")) {
                 Simbolo s = Utilidades.traerVariable(String.valueOf(a.value), Utilidades.nombreAmbito);
+                if(s.tipo==null){return null;}
                 a.tipo = s.tipo;
                 a.value = s.valor;
             }
